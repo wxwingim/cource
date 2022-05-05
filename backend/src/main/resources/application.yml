@@ -1,0 +1,33 @@
+micronaut:
+  application:
+    name: backend
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+datasources:
+  default:
+    url: jdbc:postgresql://45.10.244.15:55532/work100022
+    driverClassName: org.postgresql.Driver
+    username: work100022
+    password: 'Zf#t*#o~~dSchp9nRj4R'
+    dialect: POSTGRES
+
+jpa:
+  default:
+    packages-to-scan:
+      - 'com.backend.entities'
+    properties:
+      hibernate:
+      hbm2ddl:
+        auto: update
+      show_sql: true
+
+netty:
+  default:
+    allocator:
+      max-order: 3
