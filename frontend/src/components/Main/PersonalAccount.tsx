@@ -1,6 +1,6 @@
 import React from 'react';
-import Sidebar from './Sidebar'
-import './custom.css'
+import Sidebar from './PersonalAccountParts/Sidebar';
+import './../custom.css'
 import { Col, Container, Row, Stack, Tab, TabPane } from 'react-bootstrap';
 
 function Main() {
@@ -12,7 +12,7 @@ function Main() {
                         <Sidebar/>
                     </Col>
                     <Col>
-                        <Tab.Content className='pt-10'>
+                        <Tab.Content className=''>
                             <Tab.Pane eventKey="first">
                                 <p>Content 1</p>
                             </Tab.Pane>

@@ -9,8 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "device_types")
-public class DeviceType implements Serializable {
+@Table(name = "defect_types")
+public class DefectType implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -21,12 +22,16 @@ public class DeviceType implements Serializable {
     private String nameType;
 
 //    @JsonIgnore
-    @OneToMany(mappedBy = "deviceType")
-    private Set<DefectType> defectTypes = new HashSet<>();
+    @OneToMany(mappedBy = "defectType")
+    private Set<Defect> defects = new HashSet<>();
 
-    public DeviceType() {}
+    @ManyToOne
+    @JoinColumn(name = "id_device_type", foreignKey = @ForeignKey(name = "fk_id_device_type"))
+    private DeviceType deviceType;
 
-    public DeviceType(@NotNull String nameType) {
+    public DefectType(){}
+
+    public DefectType(String nameType){
         this.nameType = nameType;
     }
 
@@ -34,23 +39,24 @@ public class DeviceType implements Serializable {
         return id;
     }
 
-    public Set<DefectType> getDefectTypes() {
-        return defectTypes;
-    }
-
     public String getNameType() {
         return nameType;
+    }
+
+    public Set<Defect> getDefects() {
+        return defects;
+    }
+
+    public void setDefects(Set<Defect> defects) {
+        this.defects = defects;
     }
 
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public void setDefectTypes(Set<DefectType> defectTypes) {
-        this.defectTypes = defectTypes;
-    }
-
     public void setNameType(String nameType) {
         this.nameType = nameType;
     }
+
 }

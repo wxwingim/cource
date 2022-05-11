@@ -14,45 +14,7 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.Put;
 
-@Controller("/user")
+//@Controller("/user")
 public class UserController {
-
-    /**
-     *
-     */
-    @Inject
-    UserService userService;
-
-    /**
-     *
-     * @return
-     */
-    @Get("/getAll")
-    @Produces(MediaType.APPLICATION_JSON)
-    public Iterable<User> getAll() {
-        return userService.getAllUsers();
-    }
-
-//    /**
-//     *
-//     * @param phone
-//     * @return
-//     */
-//    @Get("/find/{phone}")
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public User getUserByPhone(String phone) {
-//        return userService.getUserByPhine(phone);
-//    }
-
-    /**
-     *
-     * @param user
-     * @return
-     */
-    @Post("/saveUser")
-    @Produces(MediaType.APPLICATION_JSON)
-    public User saveOrUpdate(@Body User user) {
-        return userService.saveOrupdateUser(user);
-    }
 
 }

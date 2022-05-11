@@ -1,21 +1,29 @@
 import React from 'react';
 import Header from './components/Header';
-import Main from './components/Main';
+import LandingPage from "./components/Main/LandingPage";
 import Footer from './components/Footer';
 import { Container, Row, Stack } from 'react-bootstrap';
+import { Route, Routes } from 'react-router-dom';
+
+import LoginPage from './components/Main/LoginPage';
+import RegistrationPage from './components/Main/RegistrationPage';
+import ServicesPage from './components/Main/ServicesPage';
+import PersonalAccount from './components/Main/PersonalAccount';
 
 function App() {
   return (
-    // <Container fluid>
-    //   <Row><Header/></Row>   
-    //   <Row><Main/></Row>
-    //   <Row><Footer/></Row>
-    // </Container>
-    <Stack direction='vertical'>
-      <Header/>
-      <Main/>
-      <Footer/>
-    </Stack>
+    <>
+      <Routes>
+        <Route path='/' element={<Header />}>
+          <Route index element={<LandingPage/>} />
+          <Route path='login' element={<LoginPage/>} />
+          <Route path='registration' element={<RegistrationPage/>} />
+          <Route path='services' element={<ServicesPage/>} />
+          <Route path='account' element={<PersonalAccount/>} />
+          <Route path='registration' element={<RegistrationPage/>}/>
+        </Route>
+      </Routes>
+    </>
   );
 }
 

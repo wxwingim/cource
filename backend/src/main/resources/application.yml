@@ -1,14 +1,24 @@
 micronaut:
   application:
     name: backend
-  security:
-    authentication: bearer
-    token:
-      jwt:
-        signatures:
-          secret:
-            generator:
-              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+#  security:
+#    authentication: bearer
+#    token:
+#      jwt:
+#        signatures:
+#          secret:
+#            generator:
+#              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+
+micronaut:
+  server:
+    cors:
+      enabled: true
+      configurations:
+        web:
+          allowedOrigins:
+            - http://localhost:3000
+            -
 datasources:
   default:
     url: jdbc:postgresql://45.10.244.15:55532/work100022
@@ -17,15 +27,34 @@ datasources:
     password: 'Zf#t*#o~~dSchp9nRj4R'
     dialect: POSTGRES
 
+#datasources:
+#  default:
+#    url: jdbc:postgresql://127.0.0.1:5432/testmicro4
+#    driverClassName: org.postgresql.Driver
+#    username: postgres
+#    password: '123'
+#    dialect: POSTGRES
+#    schema-generate: CREATE_DROP
+
+jpa.default.properties.hibernate.hbm2ddl.auto: update
+
 jpa:
   default:
-    packages-to-scan:
-      - 'com.backend.entities'
     properties:
       hibernate:
-      hbm2ddl:
-        auto: update
-      show_sql: true
+        hbm2ddl:
+          auto: update
+        show_sql: true
+
+#jpa:
+#  default:
+#    packages-to-scan:
+#      - 'com.backend.entities'
+#    properties:
+#      hibernate:
+#      hbm2ddl:
+#        auto: update
+#      show_sql: true
 
 netty:
   default:
