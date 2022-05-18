@@ -8,7 +8,10 @@ const ServiceNav = () => {
         <Container fluid className='bg-dark my-01'>
             <Navbar bg='dark' variant='dark'>
                 <Stack className="d-flex flex-row flex-wrap justify-content-between py-3">
-                    <Button size="lg"  variant="outline-light">МОНИТОРЫ</Button>
+                    <Link to="service/type/rey">
+                        <Button size="lg"  variant="outline-light">МОНИТОРЫ</Button>
+                    </Link>
+                    
                     <Button size="lg"  variant="outline-light">ПЛАНШЕТЫ</Button>
                     <Button size="lg"  variant="outline-light">ТЕЛЕФОНЫ</Button>
                     <Button size="lg"  variant="outline-light">НОУТБУКИ</Button>

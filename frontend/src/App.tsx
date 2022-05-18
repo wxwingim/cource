@@ -18,7 +18,8 @@ function App() {
           <Route index element={<LandingPage/>} />
           <Route path='login' element={<LoginPage/>} />
           <Route path='registration' element={<RegistrationPage/>} />
-          <Route path='services' element={<ServicesPage/>} />
+          {/* <Route path='service' element={<ServicesPage/>} /> */}
+          <Route path='service/type/{type}' element={<ServicesPage/>} />
           <Route path='account' element={<PersonalAccount/>} />
           <Route path='registration' element={<RegistrationPage/>}/>
         </Route>
