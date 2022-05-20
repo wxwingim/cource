@@ -6,19 +6,20 @@
 - [Micronaut Guides](https://guides.micronaut.io/index.html)
 ---
 
+- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
 ## Feature jdbc-hikari documentation
 
 - [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
 
 
+## Feature hibernate-jpa documentation
+
+- [Micronaut Hibernate JPA documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#hibernate)
+
+
 ## Feature reactor documentation
 
 - [Micronaut Reactor documentation](https://micronaut-projects.github.io/micronaut-reactor/snapshot/guide/index.html)
-
-
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
 
 ## Feature security-jwt documentation
@@ -29,6 +30,11 @@
 ## Feature testcontainers documentation
 
 - [https://www.testcontainers.org/](https://www.testcontainers.org/)
+
+
+## Feature http-client documentation
+
+- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
 
 ## Feature data-jdbc documentation

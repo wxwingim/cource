@@ -17,7 +17,7 @@ interface IState {
 
 class ServiceTable extends React.Component<IProps, IState> {
 
-    constructor(props : []){
+    constructor(props : any){
         super(props);
 
         this.state = {

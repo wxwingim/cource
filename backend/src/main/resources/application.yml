@@ -4,8 +4,6 @@ micronaut:
 
 micronaut:
   security:
-#    enabled: false
-#    reject-not-found: false
     authentication: bearer
     token:
       jwt:
@@ -13,7 +11,6 @@ micronaut:
           secret:
             generator:
               secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
-
 
 micronaut:
   server:
@@ -24,6 +21,13 @@ micronaut:
           allowedOrigins:
             - http://localhost:3000
 
+micronaut:
+  http:
+    services:
+      vat:
+        proxy-address: some.proxy.corp.com:8000
+        proxy-type: http
+
 datasources:
   default:
     url: jdbc:postgresql://45.10.244.15:55532/work100022
@@ -31,15 +35,6 @@ datasources:
     username: work100022
     password: 'Zf#t*#o~~dSchp9nRj4R'
     dialect: POSTGRES
-    schema-generate: CREATE_DROP
-
-#datasources:
-#  default:
-#    url: jdbc:postgresql://127.0.0.1:5432/testmicro4
-#    driverClassName: org.postgresql.Driver
-#    username: postgres
-#    password: '123'
-#    dialect: POSTGRES
 #    schema-generate: CREATE_DROP
 
 jpa.default.properties.hibernate.hbm2ddl.auto: update
@@ -51,16 +46,6 @@ jpa:
         hbm2ddl:
           auto: update
         show_sql: true
-
-#jpa:
-#  default:
-#    packages-to-scan:
-#      - 'com.backend.entities'
-#    properties:
-#      hibernate:
-#      hbm2ddl:
-#        auto: update
-#      show_sql: true
 
 netty:
   default:

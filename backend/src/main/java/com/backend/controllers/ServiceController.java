@@ -24,7 +24,7 @@ import java.util.Optional;
 import static io.micronaut.http.HttpHeaders.LOCATION;
 
 @ExecuteOn(TaskExecutors.IO)
-@Controller("/services")
+@Controller("/service")
 public class ServiceController {
     private final ServiceRepository serviceRepository;
 
