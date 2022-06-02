@@ -12,9 +12,9 @@ function Header() {
             <Link to="/"><Navbar.Brand>LOGO</Navbar.Brand></Link>
               
             <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-center">
+            <Navbar.Collapse>
             <Nav>
-                <Nav.Link><Link to="/services" className='text-light'>Услуги</Link></Nav.Link>
+                <Nav.Link><Link to="/service" className='text-light'>Услуги</Link></Nav.Link>
                 <Nav.Link><Link to='/contacts' className='text-light'>Контакты</Link></Nav.Link>
                 <Nav.Link><Link to='/about' className='text-light'>О компании</Link></Nav.Link>
             </Nav>

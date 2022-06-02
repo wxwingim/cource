@@ -26,3 +26,49 @@
     color: var(--color-active);
     cursor: default;
 }
+
+.bg-service-center{
+    /* background: #343a40; */
+    background: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backgroundServiceCenter.png");
+    background-size: 100%, 100%;
+}
+
+.bg-service{
+    /* background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService1.png"); */
+    background-size: 100%;
+    padding: 5vh 10vh 20vh 10vh;
+}
+
+.bg-service-1{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService1.png");    
+}
+.bg-service-2{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService10.png");    
+}
+.bg-service-3{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService18.png");    
+}
+.bg-service-4{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService12.png");    
+}
+.bg-service-5{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService5.png");    
+}
+.bg-service-6{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService19.png");    
+}
+.bg-service-7{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService14.png");    
+}
+.bg-service-8{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService8.png");    
+}
+.bg-service-9{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService9.png");    
+}
+.bg-service-10{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService15.png");    
+}
+.bg-service-11{
+    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService11.png");    
+}

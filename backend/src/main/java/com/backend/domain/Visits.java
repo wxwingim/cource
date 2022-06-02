@@ -29,5 +29,5 @@ public class Visits implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_order", nullable = false, foreignKey = @ForeignKey(name = "fk_id_order"))
-    Orders order;
+    OrderRequests orderRequest;
 }

@@ -1,4 +1,36 @@
 micronaut:
+  server:
+    cors:
+      enabled: true
+      single-header: true
+      configurations:
+        all:
+          allowedOrigins:
+            - http://localhost:3000
+            - http://localhost:8080
+#          exposedHeaders:
+#            - Access-Control-Allow-Origin
+#            - Access-Control-Allow-Headers
+#            - Access-Control-Request-Method
+#            - Access-Control-Request-Headers
+#            - Origin
+#            - Cache-Control
+#            - Content-Type
+#            - Authorization
+#          allowedMethods:
+#            - POST
+#            - PUT
+#            - GET
+#            - DELETE
+#          maxAge: 3600
+
+  #  http:
+  #    services:
+  #      vat:
+  #        proxy-address: some.proxy.corp.com:8000
+  #        proxy-type: http
+
+micronaut:
   application:
     name: backend
 
@@ -12,21 +44,6 @@ micronaut:
             generator:
               secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
 
-micronaut:
-  server:
-    cors:
-      enabled: true
-      configurations:
-        web:
-          allowedOrigins:
-            - http://localhost:3000
-
-micronaut:
-  http:
-    services:
-      vat:
-        proxy-address: some.proxy.corp.com:8000
-        proxy-type: http
 
 datasources:
   default:
@@ -35,7 +52,7 @@ datasources:
     username: work100022
     password: 'Zf#t*#o~~dSchp9nRj4R'
     dialect: POSTGRES
-#    schema-generate: CREATE_DROP
+    schema-generate: CREATE_DROP
 
 jpa.default.properties.hibernate.hbm2ddl.auto: update
 

@@ -19,7 +19,7 @@ public class Works implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_order", nullable = false, foreignKey = @ForeignKey(name = "fk_id_order"))
-    Orders order;
+    OrderRequests orderRequest;
 
     @ManyToOne
     @JoinColumn(name = "id_service", nullable = false, foreignKey = @ForeignKey(name = "fk_id_service"))
@@ -27,5 +27,5 @@ public class Works implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "fk_id_employee"))
-    Employees employee;
+    Users employee;
 }

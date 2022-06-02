@@ -8,20 +8,25 @@ import SearchOrderForm from './mainForms/SearchOrderForm';
 const LandingPage = () => {
     return (
         <>
-            <Container fluid className='my-01 py-25 bg-dark'>
+        
+            <ServiceNav />
+
+            <Container fluid className='bg-dark py-4 my-01'></Container>
+
+            <Container fluid className='my-01 py-25 bg-service-center'>
                 <Container>
                     <Row>
                         <Col>
-                            <h1 className='text-light fw-bold'>SERVICECENTER</h1>
+                            <h1 className='fw-bold'>SERVICEcenter</h1>
                         </Col>
                         <Col>
-                            <p className='text-light'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                         </Col>
                     </Row>
                 </Container>
             </Container>
 
-            <ServiceNav />
+            
 
             <Container fluid className='bg-dark py-4 my-01'></Container>
 

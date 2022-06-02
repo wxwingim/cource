@@ -43,7 +43,27 @@ public class ServiceRepositoryImpl implements ServiceRepository {
     @Override
     @ReadOnly
     public List<Services> findAll(String nameType) {
+        Integer id;
+        switch (nameType) {
+            case ("monitors"):
+                id = 1;
+                break;
+            case ("tablets"):
+                id = 2;
+                break;
+            case ("phones"):
+                id=3;
+                break;
+            case ("laptops"):
+                id = 4;
+                break;
+            default:
+                id=1;
+                break;
+        }
+        System.out.println(id);
+
         return entityManager.
-                createQuery("SELECT c FROM Services c WHERE c.deviceType.id=1").getResultList();
+                createQuery("SELECT c FROM Services c WHERE c.deviceType.id=" + id).getResultList();
     }
 }

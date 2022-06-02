@@ -32,32 +32,15 @@ public class ServiceController {
         this.serviceRepository = serviceRepository;
     }
 
-    @Get("/type/{nameType}")
+    @Get("/{nameType}")
     @Secured(SecurityRule.IS_ANONYMOUS)
     public List<Services> getServices(String nameType){
         return serviceRepository.findAll(nameType);
     }
 
-    @Get("/{id}")
-    @Secured(SecurityRule.IS_ANONYMOUS)
-    public Optional<Services> getService(Integer id){
-        return serviceRepository.findById(id);
-    }
-
-//    ServiceController(ServiceRepository serviceRepository) { // <3>
-//        this.serviceRepository = serviceRepository;
-//    }
-
 //    @Get("/{id}")
-//    Services show(Integer id) {
-//        return serviceRepository
-//                .findById(id)
-//                .orElse(null);
+//    @Secured(SecurityRule.IS_ANONYMOUS)
+//    public Optional<Services> getService(Integer id){
+//        return serviceRepository.findById(id);
 //    }
-//
-//    @Get(value = "/list{?args*}")
-//    List<Services> list(@Valid SortingAndOrderArguments args) {
-//        return serviceRepository.findAll(args);
-//    }
-
 }

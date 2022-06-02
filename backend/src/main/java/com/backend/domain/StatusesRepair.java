@@ -28,5 +28,5 @@ public class StatusesRepair implements Serializable {
 
     @JsonIgnore
     @OneToMany(mappedBy = "statusRepair")
-    private Set<Orders> orders = new HashSet<>();
+    private Set<OrderRequests> orders = new HashSet<>();
 }

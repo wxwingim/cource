@@ -57,9 +57,21 @@ public class OrderRequests implements Serializable {
     @JoinColumn(name = "id_user", nullable = false, foreignKey = @ForeignKey(name = "fk_id_user"))
     Users user;
 
-    @OneToOne(mappedBy = "orderRequest", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Orders order;
+    @ManyToOne
+    @JoinColumn(name = "id_status_type", nullable = false, foreignKey = @ForeignKey(name = "fk_id_status_type"))
+    StatusesRepair statusRepair;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "orderRequest")
+    private Set<Visits> visits = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "orderRequest")
+    private Set<Consumptions> consumptions = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "orderRequest")
+    private Set<Works> works = new HashSet<>();
 
     public Users getUser() {
         return user;
@@ -69,9 +81,6 @@ public class OrderRequests implements Serializable {
         return id;
     }
 
-    public Orders getOrder() {
-        return order;
-    }
 
     public DeviceTypes getDeviceType() {
         return deviceType;
@@ -113,9 +122,6 @@ public class OrderRequests implements Serializable {
         this.id = id;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
-    }
 
     public void setDeviceType(DeviceTypes deviceType) {
         this.deviceType = deviceType;

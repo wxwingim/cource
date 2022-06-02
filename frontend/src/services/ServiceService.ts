@@ -4,11 +4,11 @@ const SERVICE_API_BASE_URL = "http://localhost:8080/service";
 
 class ServiceService {
     getServices(type : string){
-        return axios.get(SERVICE_API_BASE_URL + "/type/" + type);
+        return axios.get(SERVICE_API_BASE_URL + "/" +type);
     }
 
-    getServiceById(serviceId : number){
-        return axios.get(SERVICE_API_BASE_URL + "/" + serviceId);
+    getfRequentDefects(type : string){
+        // return axios.get(SERVICE_API_BASE_URL + )
     }
 }
 

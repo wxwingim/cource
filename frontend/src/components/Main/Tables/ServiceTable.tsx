@@ -10,7 +10,9 @@ type servX = {
     "price" : number
 }
 
-interface IProps { }
+interface IProps {
+    typeDev: string;
+}
 interface IState {
     services: servX[];
   }
@@ -26,7 +28,7 @@ class ServiceTable extends React.Component<IProps, IState> {
     }
 
     componentDidMount(){
-        ServiceService.getServices("huhu").then((res) => {
+        ServiceService.getServices(this.props.typeDev).then((res) => {
             this.setState(
                 { 
                     services: res.data

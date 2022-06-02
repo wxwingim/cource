@@ -23,7 +23,7 @@ public class Consumptions implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_order", nullable = false, foreignKey = @ForeignKey(name = "fk_id_order"))
-    Orders order;
+    OrderRequests orderRequest;
 
     @ManyToOne
     @JoinColumn(name = "id_purchase", nullable = false, foreignKey = @ForeignKey(name = "fk_id_purchase"))
@@ -37,9 +37,6 @@ public class Consumptions implements Serializable {
         return amount;
     }
 
-    public Orders getOrder() {
-        return order;
-    }
 
     public Purchases getPurchase() {
         return purchase;
@@ -53,9 +50,6 @@ public class Consumptions implements Serializable {
         this.amount = amount;
     }
 
-    public void setOrder(Orders order) {
-        this.order = order;
-    }
 
     public void setPurchase(Purchases purchase) {
         this.purchase = purchase;

@@ -39,11 +39,15 @@ public class Users implements Serializable {
     @Column(name = "phone", nullable = true)
     private String phone;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Employees employee;
+    @NotNull
+    @Column(name = "position", columnDefinition = "varchar DEFAULT 'USER'")
+    private String position;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<OrderRequests> orderRequests = new HashSet<>();
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "employee")
+    private Set<Works> works = new HashSet<>();
 }

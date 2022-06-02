@@ -7,21 +7,30 @@ const ServiceNav = () => {
     return (
         <Container fluid className='bg-dark my-01'>
             <Navbar bg='dark' variant='dark'>
-                <Stack className="d-flex flex-row flex-wrap justify-content-between py-3">
-                    <Link to="service/type/rey">
-                        <Button size="lg"  variant="outline-light">МОНИТОРЫ</Button>
+                <Stack className="d-flex flex-row flex-wrap justify-content-between">
+                    <Link to="service/monitors">
+                        <Button variant="outline-light">МОНИТОРЫ</Button>
                     </Link>
                     
-                    <Button size="lg"  variant="outline-light">ПЛАНШЕТЫ</Button>
-                    <Button size="lg"  variant="outline-light">ТЕЛЕФОНЫ</Button>
-                    <Button size="lg"  variant="outline-light">НОУТБУКИ</Button>
-                    <Button size="lg"  variant="outline-light">КОМПЬЮТЕРЫ</Button>
-                    <Button size="lg"  variant="outline-light">ТЕЛЕВИЗОРЫ</Button>
-                    <Button size="lg"  variant="outline-light">МОНОБЛОКИ</Button>
-                    <Button size="lg"  variant="outline-light">ПРИСТАВКИ</Button>
-                    <Button size="lg"  variant="outline-light">ФОТОАППАРАТЫ</Button>
-                    <Button size="lg"  variant="outline-light">ПРОЕКТОРЫ</Button>
-                    <Button size="lg"  variant="outline-light">ПРИНТЕРЫ</Button>
+                    <Link to="service/tablets">
+                        <Button variant="outline-light">ПЛАНШЕТЫ</Button>
+                    </Link>
+                    
+                    <Link to="service/phones">
+                        <Button variant="outline-light">ТЕЛЕФОНЫ</Button>
+                    </Link>
+                    
+                    <Link to="service/laptops">
+                        <Button variant="outline-light">НОУТБУКИ</Button>
+                    </Link>
+                    
+                    <Button variant="outline-light">КОМПЬЮТЕРЫ</Button>
+                    <Button variant="outline-light">ТЕЛЕВИЗОРЫ</Button>
+                    <Button variant="outline-light">МОНОБЛОКИ</Button>
+                    <Button variant="outline-light">ПРИСТАВКИ</Button>
+                    <Button variant="outline-light">ФОТОАППАРАТЫ</Button>
+                    {/* <Button variant="outline-light">ПРОЕКТОРЫ</Button> */}
+                    {/* <Button variant="outline-light">ПРИНТЕРЫ</Button> */}
                 </Stack>
             </Navbar>
         </Container>

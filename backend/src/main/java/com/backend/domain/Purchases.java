@@ -49,7 +49,7 @@ public class Purchases implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_part_type", nullable = false, foreignKey = @ForeignKey(name = "fk_id_part_type"))
-    DeviceTypes partType;
+    PartTypes partType;
 
     @JsonIgnore
     @OneToMany(mappedBy = "purchase")
