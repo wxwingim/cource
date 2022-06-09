@@ -1,41 +1,40 @@
 import React from 'react';
 import './../../custom.css'
-import { Button, ButtonGroup, Col, Container, Nav, Row, Stack, Tab } from 'react-bootstrap';
+import { Button, Col, Container, Nav, Row, Stack, Tab } from 'react-bootstrap';
 import {Person, PlusSquare, CalendarCheck} from 'react-bootstrap-icons';
+import { Link } from 'react-router-dom';
 
-function Categories() {
+function Sidebar() {
     return (
-        <Stack className='flex-fill justify-content-between pb-2'>
-            <Nav variant='tabs' navbarScroll  className="flex-column">
+        <Stack direction="vertical" className='justify-content-between col-3 pb-2 bg-dark'>
+            <Nav variant='tabs' navbarScroll  className="flex-column flex-fill align-items-stretch">
 
-                <Nav.Link eventKey="first" href="#home">
+                <Link to='/' className='btn btn-outline-light border-0'>
                     <Stack direction="horizontal" gap={3} >
                         <Person className='text-light'/>
-                        Профиль
+                        <span>Профиль</span>
                     </Stack>
-                    
-                </Nav.Link>
+                </Link>
 
-                <Nav.Link eventKey="second" href="#home">
+                <Link to='newappeal' className='btn btn-outline-light border-0'>
                     <Stack direction="horizontal" gap={3}>
                         <PlusSquare className='text-light'/>
-                        Создать
+                        <span>Создать</span>
                     </Stack>
-                </Nav.Link>
+                </Link>
 
-                <Nav.Link eventKey="third" href="#home">
+                <Link to='history' className='btn btn-outline-light border-0'>
                     <Stack direction="horizontal" gap={3}>
                         <CalendarCheck className='text-light'/>
-                        История
+                        <span>История</span>
                     </Stack>
-                    
-                </Nav.Link>
+                </Link>
 
             </Nav>
 
-            <Button variant='outline-light' >Выход</Button>
+            <Button variant='outline-light border-0'>Выход</Button>
         </Stack>
     );
 }
 
-export default Categories;
+export default Sidebar;

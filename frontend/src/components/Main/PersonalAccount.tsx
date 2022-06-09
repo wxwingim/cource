@@ -1,33 +1,31 @@
 import React from 'react';
-import Sidebar from './PersonalAccountParts/Sidebar';
 import './../custom.css'
 import { Col, Container, Row, Stack, Tab, TabPane } from 'react-bootstrap';
+import Sidebar from './PersonalAccountParts/Sidebar';
+import Header from './../Header';
+import Footer from './../Footer';
 
-function Main() {
+function PersonalAccount() {
     return (
-        <Container fluid className='flex-fill'>
-            <Tab.Container defaultActiveKey="first">
-                <Row className='flex-fill'>
-                    <Col sm={2} className="bg-dark">
-                        <Sidebar/>
-                    </Col>
+        <Stack direction="horizontal" className="bg-lidht" >
+            <Sidebar />
+
+            <Container fluid className='flex-fill'>
+                <Row>
+
                     <Col>
-                        <Tab.Content className=''>
-                            <Tab.Pane eventKey="first">
-                                <p>Content 1</p>
-                            </Tab.Pane>
-                            <Tab.Pane eventKey="second">
-                                <p>Content 2</p>
-                            </Tab.Pane>
-                            <TabPane eventKey='third'>
-                                <p>Content 3</p>
-                            </TabPane>
-                        </Tab.Content>
+                        <Container>
+                            <Row>
+                                <h2>PersonalAccount</h2>
+                            </Row>
+
+                        </Container>
                     </Col>
                 </Row>
-            </Tab.Container>
-        </Container>
+
+            </Container>
+        </Stack>
     );
 }
 
-export default Main;
+export default PersonalAccount;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './custom.css';
-import { Button, Container, Nav, Navbar, Stack } from 'react-bootstrap';
+import { Container, Nav, Navbar, Stack } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
 import Footer from './Footer';
 
@@ -20,13 +20,10 @@ function Header() {
             </Nav>
             </Navbar.Collapse>
             <Stack gap={3} direction="horizontal" className="justify-content-end">
-              <Link to="/login">
-                <Button variant="outline-light">Войти</Button>
-              </Link>
 
-              <Link to="/registration">
-                <Button variant="secondary">Зарегистрироваться</Button>
-              </Link>                  
+              <Link to="/login" className='btn btn-outline-light'>Войти</Link>
+              <Link to="/registration" className='btn btn-secondary'>Зарегистрироваться</Link>          
+                      
             </Stack>
           </Container>
       </Navbar>

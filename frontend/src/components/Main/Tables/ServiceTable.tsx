@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Table } from 'react-bootstrap';
+import { Card, Container, Table } from 'react-bootstrap';
 import "./../../custom.css";
 
-import ServiceService from '../../../services/ServiceService';
+import ServiceService from '../../../services/service.service';
 
 type servX = {
     "id": number,
@@ -15,7 +15,7 @@ interface IProps {
 }
 interface IState {
     services: servX[];
-  }
+}
 
 class ServiceTable extends React.Component<IProps, IState> {
 
@@ -39,7 +39,7 @@ class ServiceTable extends React.Component<IProps, IState> {
 
     render() {
         return(
-            <>
+            <Card>
                 <Table striped bordered size="sm">
                     <thead>
                         <tr>
@@ -59,7 +59,7 @@ class ServiceTable extends React.Component<IProps, IState> {
                         }
                     </tbody>
                 </Table>
-            </>
+            </Card>
         );
     }
 }
