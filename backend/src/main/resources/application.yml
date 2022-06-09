@@ -1,0 +1,70 @@
+micronaut:
+  server:
+    cors:
+      enabled: true
+      single-header: true
+      configurations:
+        all:
+          allowedOrigins:
+            - http://localhost:3000
+            - http://localhost:8080
+#          exposedHeaders:
+#            - Access-Control-Allow-Origin
+#            - Access-Control-Allow-Headers
+#            - Access-Control-Request-Method
+#            - Access-Control-Request-Headers
+#            - Origin
+#            - Cache-Control
+#            - Content-Type
+#            - Authorization
+#          allowedMethods:
+#            - POST
+#            - PUT
+#            - GET
+#            - DELETE
+#          maxAge: 3600
+
+  #  http:
+  #    services:
+  #      vat:
+  #        proxy-address: some.proxy.corp.com:8000
+  #        proxy-type: http
+
+micronaut:
+  application:
+    name: backend
+
+micronaut:
+  security:
+    authentication: bearer
+    token:
+      jwt:
+        signatures:
+          secret:
+            generator:
+              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+
+
+datasources:
+  default:
+    url: jdbc:postgresql://45.10.244.15:55532/work100022
+    driverClassName: org.postgresql.Driver
+    username: work100022
+    password: 'Zf#t*#o~~dSchp9nRj4R'
+    dialect: POSTGRES
+    schema-generate: CREATE_DROP
+
+jpa.default.properties.hibernate.hbm2ddl.auto: update
+
+jpa:
+  default:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+
+netty:
+  default:
+    allocator:
+      max-order: 3
