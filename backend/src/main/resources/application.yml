@@ -37,20 +37,43 @@ micronaut:
 micronaut:
   security:
     authentication: bearer
+    interceptUrlMap:
+      - pattern: "/swagger/**"
+        httpMethod: GET
+        access:
+          - isAnonymous()
+    endpoints:
+      login:
+        enabled: true
+      oauth:
+        enabled: true
     token:
       jwt:
+        generator:
+          access-token:
+            expiration: 3600
+          refresh-token:
+            secret: "${JWT_GENERATOR_REFRESH_SECRET:eefe82f8-7ca6-11ea-bc55-0242ac130003}"
         signatures:
           secret:
             generator:
-              secret: '"${JWT_GENERATOR_SIGNATURE_SECRET:pleaseChangeThisSecretForANewOne}"'
+              secret: "${JWT_GENERATOR_SIGNATURE_SECRET:eefe82f8-7ca6-11ea-bc55-0242ac130003}"
 
+#datasources:
+#  default:
+#    url: jdbc:postgresql://45.10.244.15:55532/work100022
+#    driverClassName: org.postgresql.Driver
+#    username: work100022
+#    password: 'Zf#t*#o~~dSchp9nRj4R'
+#    dialect: POSTGRES
+#    schema-generate: CREATE_DROP
 
 datasources:
   default:
-    url: jdbc:postgresql://45.10.244.15:55532/work100022
+    url: jdbc:postgresql://localhost:5432/work100022
     driverClassName: org.postgresql.Driver
-    username: work100022
-    password: 'Zf#t*#o~~dSchp9nRj4R'
+    username: postgres
+    password: '123'
     dialect: POSTGRES
     schema-generate: CREATE_DROP
 
