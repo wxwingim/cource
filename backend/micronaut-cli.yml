@@ -1,6 +1,6 @@
 applicationType: default
-defaultPackage: com.backend
-testFramework: junit
+defaultPackage: mn.jwt.data
+testFramework: spock
 sourceLanguage: java
 buildTool: gradle
-features: [annotation-api, app-name, data, data-jdbc, graalvm, gradle, hibernate-jpa, http-client, jackson-databind, java, java-application, jdbc-hikari, junit, logback, micronaut-build, netty-server, postgres, reactor, reactor-http-client, readme, security-annotations, security-jwt, shade, testcontainers, yaml]
+features: [annotation-api, app-name, data, data-jpa, docker, file-watch, gradle, h2, hibernate-jpa, http-client, java, java-application, jdbc-hikari, logback, netty-server, openapi, readme, security-annotations, security-jwt, shade, spock, yaml]

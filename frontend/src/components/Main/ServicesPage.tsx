@@ -37,12 +37,12 @@ const ServicesPage = () => {
                         </Link>
                     </Col>  
                     <Col className='bg-service bg-service-3 m-2 rounded'>
-                        <Link to="service/phones">
+                        <Link to="phones">
                             <p>Ремонт телефонов</p>
                         </Link>
                     </Col>  
                     <Col className='bg-service bg-service-4 m-2 rounded'>
-                        <Link to="service/laptops">
+                        <Link to="laptops">
                             <p>Ремонт ноутбуков</p>
                         </Link>
                     </Col>            
@@ -50,17 +50,17 @@ const ServicesPage = () => {
 
                 <Row className="justify-content-center">
                     <Col className='bg-service bg-service-5 m-2 rounded'>
-                        <Link to="service/monitors">
+                        <Link to="computers">
                             <p>Ремонт компьютеров</p>
                         </Link>
                     </Col>   
                     <Col className='bg-service bg-service-6 m-2 rounded'>
-                        <Link to="service/tablets">
+                        <Link to="tvs">
                             <p>Ремонт телевизоров</p>
                         </Link>
                     </Col>   
                     <Col className='bg-service bg-service-7 m-2 rounded'>
-                        <Link to="service/monitors">
+                        <Link to="printers">
                             <p>Ремонт принтеров</p>
                         </Link>
                     </Col>          
@@ -68,22 +68,22 @@ const ServicesPage = () => {
 
                 <Row className="justify-content-center">
                     <Col className='bg-service bg-service-8 m-2 rounded'>
-                        <Link to="service/monitors">
+                        <Link to="monoblocks">
                             <p>Ремонт моноблоков</p>
                         </Link>
                     </Col>   
                     <Col className='bg-service bg-service-9 m-2 rounded'>
-                        <Link to="service/tablets">
+                        <Link to="console">
                             <p>Ремонт приставок</p>
                         </Link>
                     </Col>  
                     <Col className='bg-service bg-service-10 m-2 rounded'>
-                        <Link to="service/phones">
+                        <Link to="cameras">
                             <p>Ремонт фотоаппаратов</p>
                         </Link>
                     </Col>  
                     <Col className='bg-service bg-service-11 m-2 rounded'>
-                        <Link to="service/laptops">
+                        <Link to="projectors">
                             <p>Ремонт проекторов</p>
                         </Link>
                     </Col>             

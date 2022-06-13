@@ -1,5 +1,7 @@
+---
 micronaut:
   server:
+    port: 8080
     cors:
       enabled: true
       single-header: true
@@ -8,32 +10,45 @@ micronaut:
           allowedOrigins:
             - http://localhost:3000
             - http://localhost:8080
-#          exposedHeaders:
-#            - Access-Control-Allow-Origin
-#            - Access-Control-Allow-Headers
-#            - Access-Control-Request-Method
-#            - Access-Control-Request-Headers
-#            - Origin
-#            - Cache-Control
-#            - Content-Type
-#            - Authorization
-#          allowedMethods:
-#            - POST
-#            - PUT
-#            - GET
-#            - DELETE
-#          maxAge: 3600
-
-  #  http:
-  #    services:
-  #      vat:
-  #        proxy-address: some.proxy.corp.com:8000
-  #        proxy-type: http
-
-micronaut:
   application:
-    name: backend
+    name: mn-jwt-data
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
 
+jackson:
+  bean-introspection-module: true
+---
+#datasources:
+#  default:
+#    url: jdbc:h2:mem:dev;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
+#    driverClassName: org.h2.Driver
+#    username: sa
+#    password: ''
+#    schema-generate: CREATE_DROP
+#    dialect: H2
+datasources:
+  default:
+    url: jdbc:postgresql://localhost:5432/work100022
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: '123'
+    dialect: POSTGRES
+    schema-generate: CREATE_DROP
+jpa:
+  default:
+    entity-scan:
+      packages: 'mn.jwt.data.domain'
+    properties:
+      hibernate:
+        bytecode:
+          provider: none
+        hbm2ddl:
+          auto: update
+
+---
 micronaut:
   security:
     authentication: bearer
@@ -58,36 +73,3 @@ micronaut:
           secret:
             generator:
               secret: "${JWT_GENERATOR_SIGNATURE_SECRET:eefe82f8-7ca6-11ea-bc55-0242ac130003}"
-
-#datasources:
-#  default:
-#    url: jdbc:postgresql://45.10.244.15:55532/work100022
-#    driverClassName: org.postgresql.Driver
-#    username: work100022
-#    password: 'Zf#t*#o~~dSchp9nRj4R'
-#    dialect: POSTGRES
-#    schema-generate: CREATE_DROP
-
-datasources:
-  default:
-    url: jdbc:postgresql://localhost:5432/work100022
-    driverClassName: org.postgresql.Driver
-    username: postgres
-    password: '123'
-    dialect: POSTGRES
-    schema-generate: CREATE_DROP
-
-jpa.default.properties.hibernate.hbm2ddl.auto: update
-
-jpa:
-  default:
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
-        show_sql: true
-
-netty:
-  default:
-    allocator:
-      max-order: 3
