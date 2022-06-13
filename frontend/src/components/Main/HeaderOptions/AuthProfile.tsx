@@ -1,40 +1,37 @@
-import React from 'react';
+import React, {FC, useContext} from 'react';
 import { Nav, NavDropdown, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import AuthService from '../../../services/auth.service';
 import { Context } from '../../../index';
+import { observer } from 'mobx-react-lite';
 
-// export const {store} = useContext(Context);
+
 
 interface IProps {
     username: string;
 }
 
-interface IState {
-}
 
-class AuthProfile extends React.Component<IProps, IState> {
+const AuthProfile: FC<IProps> = (props) => {
 
-    static store = Context;
+    const {store} = useContext(Context);
 
-    Logout(e: any){
-        AuthProfile.store.logout();
+    function logout(e: any){
+        store.logout();
     }
 
-    render(){
-        return(
-            <Nav>         
-                    <NavDropdown align="end" title={this.props.username} id="basic-nav-dropdown">
-                        <NavDropdown.Item>Профиль</NavDropdown.Item>
-                        <NavDropdown.Item>История</NavDropdown.Item>
-                        <NavDropdown.Item>Создать обращение</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        {/* <NavDropdown.Item>Выход</NavDropdown.Item> */}
-                        <Link to="/" className="dropdown-item" onClick={this.Logout}>Выход</Link>
-                    </NavDropdown>
-            </Nav>
-        )
-    }
+    return(
+        <Nav>         
+                <NavDropdown align="end" title={props.username} id="basic-nav-dropdown">
+                    <NavDropdown.Item>Профиль</NavDropdown.Item>
+                    <NavDropdown.Item>История</NavDropdown.Item>
+                    <NavDropdown.Item>Создать обращение</NavDropdown.Item>
+                    <NavDropdown.Divider />
+                    {/* <NavDropdown.Item>Выход</NavDropdown.Item> */}
+                    <Link to="/" className="dropdown-item" onClick={logout}>Выход</Link>
+                </NavDropdown>
+        </Nav>
+    )
 }
 
 export default AuthProfile;

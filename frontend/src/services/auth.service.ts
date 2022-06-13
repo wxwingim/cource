@@ -30,7 +30,9 @@ class AuthService {
     // }
 
     async logout(): Promise<void>{
-      return axios.post(API_URL + "logout");
+      // return axios.post(API_URL + "logout");
+      localStorage.removeItem('token');
+      localStorage.removeItem('username');
     }
 
     // register(lastName : string, firstName : string, middleName : string, username : string, password : string) {

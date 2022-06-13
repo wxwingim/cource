@@ -40,7 +40,7 @@ public class MessageController {
     }
 
     @Get
-    @Secured({"ADMIN", "VIEW"})
+    @Secured({"ADMIN", "USER"})
     public  Single<HttpResponse<List<MessageDto>>> getMessages(@Nullable Principal principal) {
 
         return Single.just(
