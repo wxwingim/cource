@@ -1,7 +1,7 @@
 export default function ToRus(origString: string) : string {
     switch(origString){
-        case 'monitors': {
-            return 'мониторов';
+        case 'monoblocks': {
+            return 'моноблоков';
             break;
         }
         case 'tablets': {
@@ -14,6 +14,22 @@ export default function ToRus(origString: string) : string {
         }
         case 'laptops': {
             return 'ноутбуков';
+            break;
+        }
+        case 'computers': {
+            return 'компьютеров';
+            break;
+        }
+        case 'console': {
+            return 'приставок';
+            break;
+        }
+        case 'cameras': {
+            return 'фотоаппаратов';
+            break;
+        }
+        case 'watch': {
+            return 'часов';
             break;
         }
         default: { 

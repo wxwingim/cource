@@ -1,44 +1,13 @@
-## Micronaut 3.4.2 Documentation
+# mn-jwt-data
+Creating a backend at fast-pace with Micronaut (JPA, JWT)
 
-- [User Guide](https://docs.micronaut.io/3.4.2/guide/index.html)
-- [API Reference](https://docs.micronaut.io/3.4.2/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/3.4.2/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+[Managing JWT Auth with Micronaut v2 (Part 1)](https://medium.com/@ruuben/managing-jwt-auth-with-micronaut-v2-part-1-c524d7d6165b)
 
-- [Shadow Gradle Plugin](https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow)
-## Feature jdbc-hikari documentation
+[Managing JWT Auth with Micronaut v2 (Part 2)](
+https://medium.com/@ruuben/managing-jwt-auth-with-micronaut-v2-part-2-53ed984c48e?sk=60fd17bc4eceeff73835192c3771b586)
 
-- [Micronaut Hikari JDBC Connection Pool documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#jdbc)
+[Managing JWT Auth with Micronaut v2 (Part 3)](https://medium.com/@ruuben/managing-jwt-auth-with-micronaut-v2-part-3-5fd265a170b)
 
+Updates :
 
-## Feature hibernate-jpa documentation
-
-- [Micronaut Hibernate JPA documentation](https://micronaut-projects.github.io/micronaut-sql/latest/guide/index.html#hibernate)
-
-
-## Feature reactor documentation
-
-- [Micronaut Reactor documentation](https://micronaut-projects.github.io/micronaut-reactor/snapshot/guide/index.html)
-
-
-## Feature security-jwt documentation
-
-- [Micronaut Security JWT documentation](https://micronaut-projects.github.io/micronaut-security/latest/guide/index.html)
-
-
-## Feature testcontainers documentation
-
-- [https://www.testcontainers.org/](https://www.testcontainers.org/)
-
-
-## Feature http-client documentation
-
-- [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
-
-
-## Feature data-jdbc documentation
-
-- [Micronaut Data JDBC documentation](https://micronaut-projects.github.io/micronaut-data/latest/guide/index.html#jdbc)
-
-
+[Handling Refresh Token with Micronaut 2.0.0RC1](https://medium.com/@ruuben/handling-refresh-token-with-micronaut-2-0-0rc1-716cf9f78c2b)

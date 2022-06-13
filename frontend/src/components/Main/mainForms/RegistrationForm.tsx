@@ -3,19 +3,22 @@ import { Container, Row, Button, Stack, Col, Form } from 'react-bootstrap';
 import { Google } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import "./../../custom.css";
-import AuthService from '../../../services/auth.service';
+// import AuthService from '../../../services/auth.service';
+import {Context} from '../../../index';
 
 
 interface IProps {
 }
 interface IState {
-    lName: string,
-    fName: string,
-    mName: string,
+    lastName: string,
+    firstName: string,
+    middleName: string,
     username: string,
     password: string,
-    // loading: boolean
 }
+
+export const {store} = useContext(Context);
+
 
 class RegistrationForm extends React.Component<IProps, IState> {
 
@@ -29,28 +32,27 @@ class RegistrationForm extends React.Component<IProps, IState> {
         this.onChangeMName = this.onChangeMName.bind(this);
 
         this.state = {
-            lName: '',
-            fName: '',
-            mName: '',
+            lastName: '',
+            firstName: '',
+            middleName: '',
             username: '',
             password: ''
-            // loading: false
         }
     }
 
     onChangeLName(e:any) {
         this.setState({
-            lName: e.target.value
+            lastName: e.target.value
         });
     }
     onChangeFName(e:any) {
         this.setState({
-            fName: e.target.value
+            firstName: e.target.value
         });
     }
     onChangeMName(e:any) {
         this.setState({
-            mName: e.target.value
+            middleName: e.target.value
         });
     }
     onChangeUsername(e:any) {
@@ -64,13 +66,19 @@ class RegistrationForm extends React.Component<IProps, IState> {
         });
     }
     registrationUser(e:any){
-        AuthService.register(
-            this.state.lName,
-            this.state.fName,
-            this.state.mName,
-            this.state.username,
-            this.state.password
-        );
+        // AuthService.register(
+        //     this.state.lastName,
+        //     this.state.firstName,
+        //     this.state.middleName,
+        //     this.state.username,
+        //     this.state.password
+        // );
+        // AuthService.login(this.state.username, this.state.password);
+        store.register(this.state.username,
+            this.state.password,
+            this.state.lastName,
+            this.state.firstName,
+            this.state.middleName);
     }
 
     render() {
@@ -91,7 +99,7 @@ class RegistrationForm extends React.Component<IProps, IState> {
                                 <Form.Control 
                                     type="text" 
                                     placeholder="Иванов"
-                                    value={this.state.lName}
+                                    value={this.state.lastName}
                                     onChange={this.onChangeLName} />
                             </Col>
                         </Form.Group>
@@ -104,7 +112,7 @@ class RegistrationForm extends React.Component<IProps, IState> {
                                 <Form.Control 
                                     type="text" 
                                     placeholder="Иван" 
-                                    value={this.state.fName}
+                                    value={this.state.firstName}
                                     onChange={this.onChangeFName}/>
                             </Col>
                         </Form.Group>
@@ -117,7 +125,7 @@ class RegistrationForm extends React.Component<IProps, IState> {
                                 <Form.Control 
                                     type="text" 
                                     placeholder="Иванович" 
-                                    value={this.state.mName}
+                                    value={this.state.middleName}
                                     onChange={this.onChangeMName}/>
                             </Col>
                         </Form.Group>
@@ -149,12 +157,12 @@ class RegistrationForm extends React.Component<IProps, IState> {
                         </Form.Group>
 
                         <Form.Group className='pt-3'>
-                                <Link to='/login' className='d-flex'>
-                                    <Button type="button" onClick={this.registrationUser} variant='dark' className='w-100'>Зарегистрироваться</Button>
-                                </Link> 
+                            <Stack>
+                                <Link onClick={this.registrationUser} to='/account'  className='btn-block btn btn-dark'>Зарегистрироваться</Link> 
                                 <p className='pt-2 form-text'>
                                     Продолжая, вы соглашаетесь <a href='#'>со сбором и обработкой персональных данных и пользовательским соглашением</a>
                                 </p>
+                            </Stack>
                         </Form.Group>              
                     </Form>
                 </Row>

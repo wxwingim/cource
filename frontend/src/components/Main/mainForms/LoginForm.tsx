@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Button, Col, Container, Form, Row, Stack } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import { Google } from 'react-bootstrap-icons';
 import AuthService from '../../../services/auth.service';
-
-// function handleLogin() {
-//     throw new Error('Function not implemented.');
-// }
+import { Context } from '../../../index';
 
 interface IProps {
 }
@@ -15,6 +12,8 @@ interface IState {
     password: string,
     loading: boolean
 }
+
+export const {store} = useContext(Context);
 
 class AuthorizationForm extends React.Component<IProps, IState>{
 
@@ -43,8 +42,7 @@ class AuthorizationForm extends React.Component<IProps, IState>{
     }
 
     handleLogin(e: any){
-        AuthService.login(this.state.username, this.state.password);
-        console.log('Button submit');
+        store.login(this.state.username, this.state.password);
     }
 
     render() {

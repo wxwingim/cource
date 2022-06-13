@@ -23,7 +23,6 @@ function App() {
           <Route index element={<LandingPage/>} />
           <Route path='login' element={<LoginPage/>} />
           <Route path='registration' element={<RegistrationPage/>} />
-          {/* <Route path='services' element={<ServicesPage/>} /> */}
 
           <Route path='service'>
             <Route index element={<ServicesPage />} />
@@ -35,7 +34,7 @@ function App() {
 
           <Route path='registration' element={<RegistrationPage/>}/>
 
-          <Route path='account'>
+          <Route path='account' element={<Sidebar />}>
             <Route index element={<PersonalAccount />} />
             <Route path='history' element={<OrdersHistoryPage />} />
             <Route path='history/appeal' element={<AppealFromHistory />} />
