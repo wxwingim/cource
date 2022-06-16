@@ -29,6 +29,6 @@ public class AccountController {
     @Get("/profile/info")
     @Secured(IS_AUTHENTICATED)
     public Optional<User> getUser(Principal principal){
-        return userService.findUserById(principal.getName());
+        return userService.findUserByName(principal.getName());
     }
 }

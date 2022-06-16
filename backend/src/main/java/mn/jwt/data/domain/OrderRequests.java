@@ -42,7 +42,6 @@ public class OrderRequests implements Serializable {
     @Column(name = "quarantee")
     private boolean quarantee;
 
-    @NotNull
     @Column(name = "date_limit")
     private Date dateLimit;
 
@@ -72,6 +71,28 @@ public class OrderRequests implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "orderRequest")
     private Set<Works> works = new HashSet<>();
+
+    public OrderRequests() {
+    }
+
+    public OrderRequests(Long id, String model, String defect, String equipment, String mechanicalDamage, String addres, boolean quarantee, Date dateLimit, Date dateRequest, DeviceTypes deviceType, User user, StatusesRepair statusRepair, Set<Visits> visits, Set<Consumptions> consumptions, Set<Works> works) {
+        this.id = id;
+        this.model = model;
+        this.defect = defect;
+        this.equipment = equipment;
+        this.mechanicalDamage = mechanicalDamage;
+        this.addres = addres;
+        this.quarantee = quarantee;
+        this.dateLimit = dateLimit;
+        this.dateRequest = dateRequest;
+        this.deviceType = deviceType;
+        this.user = user;
+        this.statusRepair = statusRepair;
+        this.visits = visits;
+        this.consumptions = consumptions;
+        this.works = works;
+    }
+    // getters and setters
 
     public Long getId() {
         return id;

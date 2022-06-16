@@ -30,7 +30,7 @@ public class UserService {
         return usersRepository.findByUsername(username).map(userMapper::toDto);
     }
 
-    public Optional<User> findUserById(String username) {
+    public Optional<User> findUserByName(String username) {
         return usersRepository.findByUsername(username);
     }
 
