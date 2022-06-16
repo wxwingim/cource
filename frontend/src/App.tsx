@@ -18,6 +18,7 @@ import AppealFromHistory from './components/Main/PersonalAccountParts/AppealFrom
 import { observer } from 'mobx-react-lite';
 import AuthProfile from './components/Main/HeaderOptions/AuthProfile';
 import AuthButtons from './components/Main/HeaderOptions/AuthButtons';
+import UserProfile from './components/Main/PersonalAccountParts/UserProfile';
 
 
 const App: FC = () => {
@@ -76,9 +77,15 @@ const App: FC = () => {
 
           <Route path='account' element={<Sidebar />}>
             <Route index element={<PersonalAccount />} />
-            <Route path='history' element={<OrdersHistoryPage />} />
-            <Route path='history/appeal' element={<AppealFromHistory />} />
+
+            <Route path='history'>
+              <Route index element={<OrdersHistoryPage />}/>
+              <Route path='appeal' element={<AppealFromHistory />} />
+            </Route>
+            
             <Route path='newappeal' element={<CreateAppealPage />} />
+
+            <Route path='profile' element={<UserProfile />} />
           </Route>
           
         </Route>

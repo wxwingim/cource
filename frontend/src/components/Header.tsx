@@ -1,4 +1,4 @@
-import React, {FC, useContext} from 'react';
+import React, {FC, useContext, useState} from 'react';
 import './custom.css';
 import { Container, Nav, Navbar, Stack } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
@@ -13,12 +13,7 @@ const Header: FC = () => {
   
   const {store} = useContext(Context);
 
-  function LoginVerification(){
-    if (!store.isAuth && localStorage.getItem('username')){
-      return <AuthProfile username={localStorage.getItem('username') || '{}'} />
-    } else{
-      return <AuthButtons />    }
-  }
+  const [isAuth, setAuth] = useState<boolean>(store.isAuth);
 
   return (
     <>
@@ -35,7 +30,9 @@ const Header: FC = () => {
             </Nav>
             </Navbar.Collapse>
 
-            <LoginVerification />
+            {
+              isAuth ? <AuthProfile username={localStorage.getItem('username') || '{}'}/> : <AuthButtons />
+            }
 
           </Container>
       </Navbar>

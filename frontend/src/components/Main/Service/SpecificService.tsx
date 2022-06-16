@@ -1,7 +1,7 @@
 import React from 'react';
 import "./../../custom.css";
 import ServiceTable from '../Tables/ServiceTable';
-import { Container, Row, Col, Nav, Stack, Card, ListGroup } from 'react-bootstrap';
+import { Container, Row, Col, Nav, Stack, Card, ListGroup, Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { HouseDoorFill } from 'react-bootstrap-icons';
 import ToRus from './../../../Custom/servicesToRus';
@@ -22,13 +22,11 @@ class SpecificService extends React.Component<IProps, IState> {
             <Container fluid className='bg-light py-5'>
                 <Container className="py-4">
                     <Row>
-                        <Nav className='pb-3 px-2'>
-                            <Link to={'/'}><HouseDoorFill className='text-dark'/></Link>
-                            <span className='mx-2'> / </span>
-                            <Link to={'/service'}><span className='text-dark'>Ремонт техники</span></Link>
-                            <span className='mx-2'> / </span>
-                            <Link to={'/service/{this.props.type}'}><span className='text-dark'>Ремонт {ToRus(this.props.type)}</span></Link>
-                        </Nav>
+                        <Breadcrumb>
+                            <Link to={'/'} className="breadcrumb-item text-dark"><HouseDoorFill className='mb-1'/></Link>
+                            <Link to={'/service'} className="breadcrumb-item text-dark">Ремонт техники</Link>
+                            <Breadcrumb.Item active>Ремонт {ToRus(this.props.type)}</Breadcrumb.Item>
+                        </Breadcrumb>
                     </Row>
 
                     <Row className='pb-3'>

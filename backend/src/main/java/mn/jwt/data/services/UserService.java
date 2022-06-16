@@ -30,6 +30,10 @@ public class UserService {
         return usersRepository.findByUsername(username).map(userMapper::toDto);
     }
 
+    public Optional<User> findUserById(String username) {
+        return usersRepository.findByUsername(username);
+    }
+
     public Optional<UserDto> findByRefreshToken(String refreshToken) {
         return usersRepository.findByToken(refreshToken).map(userMapper::toDto);
     }

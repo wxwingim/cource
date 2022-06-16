@@ -1,22 +1,11 @@
 import axios from 'axios'
 import {AxiosResponse} from 'axios'
 import { AuthResponce } from '../models/AuthResponce';
+import react, {useState} from 'react'
 
 const API_URL = "http://localhost:8080/";
 
 class AuthService {
-
-    // async login(username : string, password : string){
-    //     const response = await axios
-    //     .post(API_URL + "login", {
-    //       username,
-    //       password
-    //     });
-    //   if (response.data.access_token) {
-    //     localStorage.setItem("user", JSON.stringify(response.data));
-    //   } 
-    //   return response.data;
-    // }
 
     async login(username : string, password : string): Promise<AxiosResponse<AuthResponce>>{
       return axios.post<AuthResponce>(API_URL + "login", {
@@ -25,27 +14,11 @@ class AuthService {
       });
     }
 
-    // logout() {
-    //     localStorage.removeItem("user");
-    // }
-
-    async logout(): Promise<void>{
-      // return axios.post(API_URL + "logout");
-      localStorage.removeItem('token');
-      localStorage.removeItem('username');
+    async logout(): Promise<void> {
+      localStorage.clear();
     }
 
-    // register(lastName : string, firstName : string, middleName : string, username : string, password : string) {
-    //   return axios.post(API_URL + "signup", {
-    //       lastName,
-    //       firstName,
-    //       middleName,
-    //       username,
-    //       password
-    //   });
-    // }
-
-    async register(username : string, password : string, lastName: string, firstName: string, middleName: string): Promise<AxiosResponse<AuthResponce>>{
+    async register(username : string, password : string, lastName: string, firstName: string, middleName: string): Promise<AxiosResponse<AuthResponce>> {
       return axios.post<AuthResponce>(API_URL + "register", {
         username,
         password,
@@ -56,8 +29,8 @@ class AuthService {
     }
 
     getCurrentUser() {
-      return JSON.parse(localStorage.getItem('user') || '{}');
+      return localStorage.getItem('username') || '{}';
     }
 }
 
-export default new AuthService()
+export default new AuthService();

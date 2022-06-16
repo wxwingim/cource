@@ -1,10 +1,9 @@
 import React, {FC, useContext} from 'react';
 import { Nav, NavDropdown, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import AuthService from '../../../services/auth.service';
 import { Context } from '../../../index';
-import { observer } from 'mobx-react-lite';
-
+import UserService from '../../../services/user.service';
+import { UserResponce } from '../../../models/UserResponce';
 
 
 interface IProps {
@@ -17,17 +16,18 @@ const AuthProfile: FC<IProps> = (props) => {
     const {store} = useContext(Context);
 
     function logout(e: any){
+        UserService.setUser({} as UserResponce)
         store.logout();
+        localStorage.setAuth(false);
     }
 
     return(
         <Nav>         
                 <NavDropdown align="end" title={props.username} id="basic-nav-dropdown">
-                    <NavDropdown.Item>Профиль</NavDropdown.Item>
-                    <NavDropdown.Item>История</NavDropdown.Item>
-                    <NavDropdown.Item>Создать обращение</NavDropdown.Item>
+                    <Link to="/account/profile" className="dropdown-item">Профиль</Link>
+                    <Link to="/account/history" className="dropdown-item">История</Link>
+                    <Link to="/account/newappeal" className="dropdown-item">Создать обращение</Link>
                     <NavDropdown.Divider />
-                    {/* <NavDropdown.Item>Выход</NavDropdown.Item> */}
                     <Link to="/" className="dropdown-item" onClick={logout}>Выход</Link>
                 </NavDropdown>
         </Nav>

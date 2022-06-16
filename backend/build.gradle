@@ -59,6 +59,7 @@ dependencies {
         exclude group: "org.codehaus.groovy", module: "groovy-all"
     }
     testImplementation("io.micronaut.test:micronaut-test-spock")
+    compile "com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.0"
 }
 
 test.classpath += configurations.developmentOnly

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Row, Stack} from 'react-bootstrap';
+import { Col, Container, Row, Stack, Breadcrumb} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import "./../custom.css";
 import { HouseDoorFill } from 'react-bootstrap-icons'
@@ -12,11 +12,10 @@ const ServicesPage = () => {
             <Container className="py-4">
 
                 <Row >
-                    <Stack direction="horizontal" className='pb-3 px-2'>
-                        <Link to={'/'}><HouseDoorFill className='text-dark'/></Link>
-                        <span className='mx-2'> / </span>
-                        <Link to={'/service'}> <span className='text-dark'>Ремонт техники</span></Link>
-                    </Stack>
+                    <Breadcrumb>
+                        <Link to={'/'} className="breadcrumb-item text-dark"><HouseDoorFill className='mb-1'/></Link>
+                        <Breadcrumb.Item active>Ремонт техники</Breadcrumb.Item>
+                    </Breadcrumb>
                 </Row>
 
                 <Row className='pb-3'>

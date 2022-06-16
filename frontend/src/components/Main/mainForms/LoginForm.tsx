@@ -5,6 +5,11 @@ import { Google } from 'react-bootstrap-icons';
 import AuthService from '../../../services/auth.service';
 import { Context } from '../../../index';
 import { observer } from 'mobx-react-lite';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+function ErrorMessage(){
+    return <p className="text-danger">Неправильный логин или пароль</p>
+}
 
 
 const AuthorizationForm: FC = () => {
@@ -12,6 +17,7 @@ const AuthorizationForm: FC = () => {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const {store} = useContext(Context);
+    const navigate = useNavigate();
 
     function handleLogin(e: any){
         store.login(username, password);
@@ -57,7 +63,7 @@ const AuthorizationForm: FC = () => {
                     </Form.Group>
 
                     <Form.Group>
-                        <Button type="button" onClick={handleLogin} variant='dark' className='w-100'>Войти</Button>
+                        <Link to="/" onClick={handleLogin} className='btn btn-dark w-100'>Войти</Link>
                     </Form.Group>              
                 </Form>
             </Row>

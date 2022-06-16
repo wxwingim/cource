@@ -51,9 +51,9 @@ export default class Store{
         }
     }
 
-    async logout(){
+    logout(){
         try{
-            const response = await AuthService.logout();
+            // const response = await AuthService.logout();
             localStorage.removeItem('token');
             localStorage.removeItem('username')
             this.setAuth(false);
@@ -66,21 +66,24 @@ export default class Store{
     async checkAuth(){
 
         try{
-            const response = await axios.get<AuthResponce>(API_URL + "messages", 
-            { 
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('token')
-                } 
-            })
-            console.log(response);
-            console.log(this.username);
-            console.log(this.isAuth);
-            console.log(localStorage.getItem('username'));
-            this.setAuth(true);
-            this.setUsername(response.data.username)
+            // const response = await axios.get<AuthResponce>(API_URL + "messages", 
+            // { 
+            //     headers: {
+            //         Authorization: 'Bearer ' + localStorage.getItem('token')
+            //     } 
+            // })
+            // console.log(response);
+            // console.log(this.username);
+            // console.log(this.isAuth);
+            // console.log(localStorage.getItem('username'));
+            // this.setAuth(true);
+            // this.setUsername(response.data.username)
         } catch(e: any) {
-            console.log("error in store");
             console.log(e.response?.data?.message);
         }
     }
+
+    // async getUserDetails(){
+
+    // }
 }

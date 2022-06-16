@@ -6,34 +6,34 @@ import { Link, Outlet } from 'react-router-dom';
 
 function Sidebar() {
     return (
-        <Stack direction="horizontal" className="bg-light">
-            <Stack direction="vertical" className='justify-content-between col-3 pb-2 bg-dark'>
-                <Nav variant='tabs' navbarScroll  className="flex-column flex-fill align-items-stretch">
+        <Stack direction="horizontal" className="bg-dark">
+            <Stack direction="vertical" className='justify-content-between col-3 pb-2'>
+                <Nav variant='tabs' navbarScroll  className="flex-column align-items-stretch">
 
-                    <Link to='/' className='btn btn-outline-light border-0'>
+                    <Link to='profile' className='btn btn-outline-light border-0'>
                         <Stack direction="horizontal" gap={3} >
-                            <Person className='text-light'/>
+                            <Person />
                             <span>Профиль</span>
                         </Stack>
                     </Link>
 
                     <Link to='newappeal' className='btn btn-outline-light border-0'>
                         <Stack direction="horizontal" gap={3}>
-                            <PlusSquare className='text-light'/>
-                            <span>Создать</span>
+                            <PlusSquare />
+                            <span>Новое обращение</span>
                         </Stack>
                     </Link>
 
                     <Link to='history' className='btn btn-outline-light border-0'>
                         <Stack direction="horizontal" gap={3}>
-                            <CalendarCheck className='text-light'/>
-                            <span>История</span>
+                            <CalendarCheck />
+                            <span>История обращений</span>
                         </Stack>
                     </Link>
 
                 </Nav>
 
-                <Button variant='outline-light border-0'>Выход</Button>
+                {/* <Button variant='outline-light border-0'>Выход</Button> */}
             </Stack>
 
             <Outlet />
