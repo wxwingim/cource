@@ -1,6 +1,10 @@
 package mn.jwt.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
@@ -8,12 +12,17 @@ import org.hibernate.annotations.GenerationTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
+//import java.util.Date;
+import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 
+@NoArgsConstructor
+@AllArgsConstructor
+//@Data
+//@Builder
 @Entity
 @Table(name = "order_requests")
 public class OrderRequests implements Serializable {
@@ -72,26 +81,6 @@ public class OrderRequests implements Serializable {
     @OneToMany(mappedBy = "orderRequest")
     private Set<Works> works = new HashSet<>();
 
-    public OrderRequests() {
-    }
-
-    public OrderRequests(Long id, String model, String defect, String equipment, String mechanicalDamage, String addres, boolean quarantee, Date dateLimit, Date dateRequest, DeviceTypes deviceType, User user, StatusesRepair statusRepair, Set<Visits> visits, Set<Consumptions> consumptions, Set<Works> works) {
-        this.id = id;
-        this.model = model;
-        this.defect = defect;
-        this.equipment = equipment;
-        this.mechanicalDamage = mechanicalDamage;
-        this.addres = addres;
-        this.quarantee = quarantee;
-        this.dateLimit = dateLimit;
-        this.dateRequest = dateRequest;
-        this.deviceType = deviceType;
-        this.user = user;
-        this.statusRepair = statusRepair;
-        this.visits = visits;
-        this.consumptions = consumptions;
-        this.works = works;
-    }
     // getters and setters
 
     public Long getId() {

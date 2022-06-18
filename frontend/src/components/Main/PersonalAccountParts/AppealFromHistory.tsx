@@ -1,11 +1,27 @@
-import React from 'react';
+import React, {useLayoutEffect, useEffect, useState} from 'react';
 import { Container, Row, Col, Stack, Button, Breadcrumb, Badge, Form } from 'react-bootstrap';
 import Sidebar from './Sidebar';
 import { Paperclip, HouseDoorFill } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import AppealCommentCard from '../Tables/AppealCommentCard';
+import {OrderRes, DeviceType, StatusRepair} from '../../../models/OrderResponce';
+import UserService from '../../../services/user.service';
+import {PrettyFormat} from '../../../Custom/PrettyFormat';
 
 function AppealFromHistory() {
+    let id = useParams<{ id:string }>();
+    const [order, setOrder] = useState<OrderRes>({} as OrderRes);
+    const [deviceType, setDeviceType] = useState<DeviceType>({} as DeviceType);
+    const [statusRepair, setStatusRepair] = useState<StatusRepair>({} as StatusRepair);
+
+    useEffect(()=>{
+        UserService.getOrder(id.id || '').then(order => {
+            setOrder(order.data);
+            setDeviceType(order.data.deviceType);
+            setStatusRepair(order.data.statusRepair)
+        })
+    }, [])
+
     return (
         <Container fluid className='bg-light p-3'>
 
@@ -19,8 +35,8 @@ function AppealFromHistory() {
             </Row>
 
             <Row className="pb-3">
-                <h2 className="h1 pb-3">Наименование устройства</h2>
-                <p className='text-muted fw-bolder fs-4'>Неисправность</p>
+                <h2 className="h1 pb-3">{ order.model }</h2>
+                <p className='text-muted fw-bolder fs-4'>{ order.defect }</p>
             </Row>
 
             <hr className="mb-5" />
@@ -29,34 +45,34 @@ function AppealFromHistory() {
                 <Row>
                     <Col>                   
                         <span className='text-muted fw-bolder mb-2 '>Номер</span>
-                        <p className="pb-3">№000095678902</p></Col>
+                        <p className="pb-3">{ PrettyFormat.PrettyNumber('smth', order.id) }</p></Col>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2'>Дата обращения</span>
-                        <p className="pb-3">22.09.2021</p></Col>
+                        <p className="pb-3">{ PrettyFormat.Deserialize(order.dateRequest) }</p></Col>
                     <Col>                   
                         <span className='text-muted fw-bolder mb-2'>Дата закрытия</span>
-                        <p className="pb-3">-</p>
+                        <p className="pb-3">{ order.dateLimit ? PrettyFormat.Deserialize(order.dateLimit) : '-' }</p>
                     </Col>
                     <Col>                    
                         <Badge pill bg="success" className="px-3 py-2">
-                            принят в ремонт
-                        </Badge>
+                            { statusRepair.nametatus } 
+                        </Badge> 
                     </Col>
                 </Row>
 
                 <Row>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2 '>Тип</span>
-                        <p>Ноутбук</p></Col>
+                        <p>{ deviceType.nameType }</p></Col>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2 '>Механические повреждения</span>
-                        <p>Царапины</p></Col>
+                        <p>{ order.mechanicalDamage }</p></Col>
                     <Col>
                         <span className='text-muted fw-bolder mb-2'>Комплектация</span>
-                        <p>нет</p></Col>
+                        <p>{ order.equipment }</p></Col>
                     <Col>
                         <span className='text-muted fw-bolder mb-2'>Гарантия</span>
-                        <p>нет</p>
+                        <p>{ order.quarantee ? 'да' : 'нет' }</p>
                     </Col>
                 </Row>
             </Container>

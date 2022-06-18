@@ -5,6 +5,7 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import mn.jwt.data.domain.OrderRequests;
 import mn.jwt.data.domain.User;
+import mn.jwt.data.dtos.OrderDto;
 import mn.jwt.data.repositories.OrdersRepository;
 import mn.jwt.data.services.UserService;
 
@@ -29,5 +30,10 @@ public class OrdersController {
     public List<OrderRequests> getAllHistory(Principal principal){
         Optional<User> user = userService.findUserByName(principal.getName());
         return ordersRepository.findAll(user.get().getId());
+    }
+
+    @Post("/appeal/{id}")
+    public Optional<OrderRequests> getOrderFromHistory(Long id){
+        return ordersRepository.findById(id);
     }
 }

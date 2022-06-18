@@ -19,7 +19,7 @@ import { observer } from 'mobx-react-lite';
 import AuthProfile from './components/Main/HeaderOptions/AuthProfile';
 import AuthButtons from './components/Main/HeaderOptions/AuthButtons';
 import UserProfile from './components/Main/PersonalAccountParts/UserProfile';
-
+import StatusCheckPage from './components/Main/StatusCheckPage';
 
 const App: FC = () => {
   const {store} = useContext(Context);
@@ -64,6 +64,7 @@ const App: FC = () => {
           <Route index element={<LandingPage/>} />
           <Route path='login' element={<LoginPage/>} />
           <Route path='registration' element={<RegistrationPage/>} />
+          <Route path='status' element={<StatusCheckPage />} />
 
           <Route path='service'>
             <Route index element={<ServicesPage />} />
@@ -80,7 +81,7 @@ const App: FC = () => {
 
             <Route path='history'>
               <Route index element={<OrdersHistoryPage />}/>
-              <Route path='appeal' element={<AppealFromHistory />} />
+              <Route path='appeal/:id' element={<AppealFromHistory />} />
             </Route>
             
             <Route path='newappeal' element={<CreateAppealPage />} />

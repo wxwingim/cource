@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col, Container, Row, Stack } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import "./../custom.css";
 
 import ServiceNav from './LandingComponents/ServiceNav';
@@ -13,14 +14,16 @@ const LandingPage = () => {
 
             <Container fluid className='bg-dark py-4 my-01'></Container>
 
-            <Container fluid className='my-01 py-25 bg-service-center'>
+            <Container fluid className='my-01 py-25 bg-dark'>
                 <Container>
                     <Row>
                         <Col>
-                            <h1 className='fw-bold'>SERVICEcenter</h1>
+                            <h1 className='fw-bold text-light'>SERVICEcenter</h1>
+                            <p className='text-light mb-5'>Сервисный центр по ремонту бытовой техники и электроники</p>
+                            <Link to="/status" className='btn btn-outline-info'>Проверить по номеру</Link>
                         </Col>
                         <Col>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                            {/* TODO create image */}
                         </Col>
                     </Row>
                 </Container>
