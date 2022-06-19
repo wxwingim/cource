@@ -14,12 +14,13 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@Data
-//@Builder
-//@Introspected
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Builder
+@Introspected
 public class OrderDto {
+    private Long id;
     private String model;
     private String defect;
     private String equipment;
@@ -27,8 +28,8 @@ public class OrderDto {
     private Date dateRequest;
     private Date dateLimit;
     private boolean quarantee;
-//    private DeviceTypes deviceType;
-//    private StatusesRepair statusRepair;
+    private DeviceTypes deviceType;
+    private StatusesRepair statusRepair;
 //    private Set<Consumptions> consumptions = new HashSet<>();
 //    private Set<Works> works = new HashSet<>();
 

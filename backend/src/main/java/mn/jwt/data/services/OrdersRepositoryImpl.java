@@ -23,42 +23,43 @@ public class OrdersRepositoryImpl implements OrdersRepository {
         this.orderMapper = orderMapper;
     }
 
-//    @Override
-//    @ReadOnly
-//    public List<OrderDto> findAll(Long id) {
-//        List<OrderDto> orderDtos = new ArrayList<>();
-//        entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
-//                .getResultList().stream().forEach(order -> orderDtos.add(orderMapper.toDto((OrderRequests)order)));
-//        return orderDtos;
-//    }
-
     @Override
     @ReadOnly
-    public List<OrderRequests> findAll(Long id) {
-        return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
-                .getResultList();
+    public List<OrderDto> findAll(Long id) {
+        List<OrderDto> orderDtos = new ArrayList<>();
+        entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
+                .getResultList().stream().forEach(order -> orderDtos.add(orderMapper.toDto((OrderRequests)order)));
+        return orderDtos;
     }
 
 //    @Override
 //    @ReadOnly
-//    public Optional<OrderDto> findById(Long id) {
-//        Object order =  entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.id = :id")
-//                .setParameter("id", id)
-//                .setMaxResults(1)
-//                .getResultList()
-//                .stream()
-//                .findFirst();
-//        return Optional.ofNullable(orderMapper.toDto((OrderRequests) order));
+//    public List<OrderRequests> findAll(Long id) {
+//        return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
+//                .getResultList();
 //    }
 
     @Override
     @ReadOnly
-    public Optional<OrderRequests> findById(Long id) {
+    public Optional<OrderDto> findById(Long id) {
         return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.id = :id")
                 .setParameter("id", id)
                 .setMaxResults(1)
                 .getResultList()
                 .stream()
-                .findFirst();
+                .findFirst()
+                .map(order -> orderMapper.toDto((OrderRequests)order));
+//        return Optional.of(orderMapper.toDto((OrderRequests)order));
     }
+
+//    @Override
+//    @ReadOnly
+//    public Optional<OrderRequests> findById(Long id) {
+//        return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.id = :id")
+//                .setParameter("id", id)
+//                .setMaxResults(1)
+//                .getResultList()
+//                .stream()
+//                .findFirst();
+//    }
 }

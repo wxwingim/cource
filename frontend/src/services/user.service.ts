@@ -31,5 +31,9 @@ class UserService {
     return await axios.post<OrderRes>(API_URL + "history/appeal/" + id, {data: null}, {headers: authHeader()})
   }
 
+  async getOrderAnonim(id: string){
+    return await axios.get<OrderRes>(API_URL + "history/search/" + id)
+  }
+
 }
 export default new UserService();

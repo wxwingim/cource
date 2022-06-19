@@ -7,6 +7,7 @@ import AppealCommentCard from '../Tables/AppealCommentCard';
 import {OrderRes, DeviceType, StatusRepair} from '../../../models/OrderResponce';
 import UserService from '../../../services/user.service';
 import {PrettyFormat} from '../../../Custom/PrettyFormat';
+import WorksTable from '../Tables/WorksTable';
 
 function AppealFromHistory() {
     let id = useParams<{ id:string }>();
@@ -18,8 +19,8 @@ function AppealFromHistory() {
         UserService.getOrder(id.id || '').then(order => {
             setOrder(order.data);
             setDeviceType(order.data.deviceType);
-            setStatusRepair(order.data.statusRepair)
-        })
+            setStatusRepair(order.data.statusRepair);
+        });
     }, [])
 
     return (
@@ -45,7 +46,7 @@ function AppealFromHistory() {
                 <Row>
                     <Col>                   
                         <span className='text-muted fw-bolder mb-2 '>Номер</span>
-                        <p className="pb-3">{ PrettyFormat.PrettyNumber('smth', order.id) }</p></Col>
+                        <p className="pb-3">{ deviceType.nameType ? PrettyFormat.PrettyNumber(deviceType.nameType, order.id) : ''}</p></Col>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2'>Дата обращения</span>
                         <p className="pb-3">{ PrettyFormat.Deserialize(order.dateRequest) }</p></Col>
@@ -55,7 +56,7 @@ function AppealFromHistory() {
                     </Col>
                     <Col>                    
                         <Badge pill bg="success" className="px-3 py-2">
-                            { statusRepair.nametatus } 
+                            { statusRepair.nametatus || ''} 
                         </Badge> 
                     </Col>
                 </Row>
@@ -63,7 +64,7 @@ function AppealFromHistory() {
                 <Row>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2 '>Тип</span>
-                        <p>{ deviceType.nameType }</p></Col>
+                        <p>{ deviceType.nameType || ''}</p></Col>
                     <Col>                    
                         <span className='text-muted fw-bolder mb-2 '>Механические повреждения</span>
                         <p>{ order.mechanicalDamage }</p></Col>
@@ -78,6 +79,10 @@ function AppealFromHistory() {
             </Container>
             
             <hr className="mb-5" />
+
+            <Row>
+                <WorksTable id={order.id}/>
+            </Row>
 
             <Row className="mx-1">
                 <AppealCommentCard />

@@ -22,7 +22,7 @@ import static javax.persistence.GenerationType.AUTO;
 @NoArgsConstructor
 @AllArgsConstructor
 //@Data
-//@Builder
+@Builder
 @Entity
 @Table(name = "order_requests")
 public class OrderRequests implements Serializable {

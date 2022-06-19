@@ -1,6 +1,7 @@
 package mn.jwt.data.controllers;
 
 import io.micronaut.http.annotation.Controller;
+import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import mn.jwt.data.domain.OrderRequests;
@@ -13,10 +14,10 @@ import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
+import static io.micronaut.security.rules.SecurityRule.IS_ANONYMOUS;
 import static io.micronaut.security.rules.SecurityRule.IS_AUTHENTICATED;
 
 @Controller("/history")
-@Secured(IS_AUTHENTICATED)
 public class OrdersController {
     OrdersRepository ordersRepository;
     UserService userService;
@@ -27,13 +28,19 @@ public class OrdersController {
     }
 
     @Post("/all")
-    public List<OrderRequests> getAllHistory(Principal principal){
+    @Secured(IS_AUTHENTICATED)
+    public List<OrderDto> getAllHistory(Principal principal){
         Optional<User> user = userService.findUserByName(principal.getName());
         return ordersRepository.findAll(user.get().getId());
     }
 
     @Post("/appeal/{id}")
-    public Optional<OrderRequests> getOrderFromHistory(Long id){
+    @Secured(IS_AUTHENTICATED)
+    public Optional<OrderDto> getOrderFromHistory(Long id){
         return ordersRepository.findById(id);
     }
+
+    @Get("/search/{id}")
+    @Secured(IS_ANONYMOUS)
+    public Optional<OrderDto> getOrderForEveryone(Long id){ return ordersRepository.findById(id); }
 }
