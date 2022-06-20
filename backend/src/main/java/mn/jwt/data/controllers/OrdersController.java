@@ -6,8 +6,11 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.security.annotation.Secured;
 import mn.jwt.data.domain.OrderRequests;
 import mn.jwt.data.domain.User;
+import mn.jwt.data.domain.Works;
 import mn.jwt.data.dtos.OrderDto;
+import mn.jwt.data.dtos.WorksDto;
 import mn.jwt.data.repositories.OrdersRepository;
+import mn.jwt.data.repositories.WorksRepository;
 import mn.jwt.data.services.UserService;
 
 import java.security.Principal;
@@ -21,10 +24,12 @@ import static io.micronaut.security.rules.SecurityRule.IS_AUTHENTICATED;
 public class OrdersController {
     OrdersRepository ordersRepository;
     UserService userService;
+    WorksRepository worksRepository;
 
-    public OrdersController(OrdersRepository ordersRepository, UserService userService) {
+    public OrdersController(OrdersRepository ordersRepository, UserService userService, WorksRepository worksRepository) {
         this.ordersRepository = ordersRepository;
         this.userService = userService;
+        this.worksRepository = worksRepository;
     }
 
     @Post("/all")
@@ -43,4 +48,8 @@ public class OrdersController {
     @Get("/search/{id}")
     @Secured(IS_ANONYMOUS)
     public Optional<OrderDto> getOrderForEveryone(Long id){ return ordersRepository.findById(id); }
+
+    @Post("/works/{id}")
+    @Secured(IS_AUTHENTICATED)
+    public List<WorksDto> getWorks(Long id){ return worksRepository.findAll(id); }
 }

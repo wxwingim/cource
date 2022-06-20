@@ -2,7 +2,7 @@ import axios from 'axios';
 import {AxiosResponse} from 'axios'
 import authHeader from './auth-header';
 import { UserResponce } from '../models/UserResponce'; 
-import { OrderRes } from '../models/OrderResponce'
+import { OrderRes, Works } from '../models/OrderResponce'
 import { get } from 'http';
 import { set } from 'mobx';
 import { isAwaitExpression } from 'typescript';
@@ -33,6 +33,10 @@ class UserService {
 
   async getOrderAnonim(id: string){
     return await axios.get<OrderRes>(API_URL + "history/search/" + id)
+  }
+
+  async getWorks(id: string){
+    return await axios.post<Works[]>(API_URL + "history/works/" + id, {data: null}, {headers: authHeader()});
   }
 
 }

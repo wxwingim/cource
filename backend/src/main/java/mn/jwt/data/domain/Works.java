@@ -1,6 +1,10 @@
 package mn.jwt.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,6 +14,10 @@ import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 
+@NoArgsConstructor
+@AllArgsConstructor
+//@Data
+@Builder
 @Entity
 @Table(name = "works")
 public class Works implements Serializable {
@@ -19,15 +27,15 @@ public class Works implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_order", nullable = false, foreignKey = @ForeignKey(name = "fk_id_order"))
-    OrderRequests orderRequest;
+    private OrderRequests orderRequest;
 
     @ManyToOne
     @JoinColumn(name = "id_service", nullable = false, foreignKey = @ForeignKey(name = "fk_id_service"))
-    Services service;
+    private Services service;
 
     @ManyToOne
     @JoinColumn(name = "id_employee", nullable = false, foreignKey = @ForeignKey(name = "fk_id_employee"))
-    User employee;
+    private User employee;
 
     public Long getId() {
         return id;

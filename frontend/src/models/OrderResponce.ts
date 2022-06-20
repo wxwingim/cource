@@ -21,3 +21,16 @@ export interface StatusRepair {
     id: number;
     nametatus: string;
 }
+
+export interface Service {
+    id: number;
+    name: string;
+    price: number;
+    quarantee: number;
+    deviceType: DeviceType;
+}
+
+export interface Works{
+    id: number,
+    service: Service
+}

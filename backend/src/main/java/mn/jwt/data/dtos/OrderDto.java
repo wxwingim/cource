@@ -30,7 +30,4 @@ public class OrderDto {
     private boolean quarantee;
     private DeviceTypes deviceType;
     private StatusesRepair statusRepair;
-//    private Set<Consumptions> consumptions = new HashSet<>();
-//    private Set<Works> works = new HashSet<>();
-
 }
