@@ -8,14 +8,14 @@ const API_URL = "http://localhost:8080/";
 class AuthService {
 
     async login(username : string, password : string): Promise<AxiosResponse<AuthResponce>>{
-      return axios.post<AuthResponce>(API_URL + "login", {
+      return axios.post<AuthResponce>("/login", {
         username,
         password
       });
     }
 
     async logout(): Promise<void> {
-      localStorage.clear();
+      axios.post("/logout");
     }
 
     async register(username : string, password : string, lastName: string, firstName: string, middleName: string): Promise<AxiosResponse<AuthResponce>> {

@@ -20,23 +20,23 @@ class UserService {
   }
 
   getUserDetails(){
-    return axios.get<UserResponce>(API_URL + "account/profile/info", { headers: authHeader() })
+    return axios.get<UserResponce>("/account/profile/info")
   }
 
   getUserOrdersAll(){
-    return axios.post<OrderRes[]>(API_URL + "history/all", {data: null}, { headers: authHeader() })
+    return axios.post<OrderRes[]>("/history/all")
   }
 
   async getOrder(id: string){
-    return await axios.post<OrderRes>(API_URL + "history/appeal/" + id, {data: null}, {headers: authHeader()})
+    return await axios.post<OrderRes>("/history/appeal/" + id)
   }
 
   async getOrderAnonim(id: string){
-    return await axios.get<OrderRes>(API_URL + "history/search/" + id)
+    return await axios.get<OrderRes>(API_URL + "/history/search/" + id)
   }
 
   async getWorks(id: string){
-    return await axios.post<Works[]>(API_URL + "history/works/" + id, {data: null}, {headers: authHeader()});
+    return await axios.post<Works[]>("/history/works/" + id);
   }
 
 }

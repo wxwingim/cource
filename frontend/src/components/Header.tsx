@@ -1,4 +1,4 @@
-import React, {FC, useContext, useState} from 'react';
+import React, {FC, useContext, useState, useEffect} from 'react';
 import './custom.css';
 import { Container, Nav, Navbar, Stack } from 'react-bootstrap';
 import { Link, Outlet } from 'react-router-dom';
@@ -8,12 +8,24 @@ import AuthProfile from './Main/HeaderOptions/AuthProfile';
 import AuthService from './../services/auth.service';
 import {Context} from '../index';
 import { observer } from 'mobx-react-lite';
+import UserService from './../services/user.service';
 
-const Header: FC = () => {
+function Header() {
   
   const {store} = useContext(Context);
 
-  const [isAuth, setAuth] = useState<boolean>(store.isAuth);
+  const [isAuth, setAuth] = useState<boolean>(false);
+  const [username, setUsername] = useState<string>("");
+
+  useEffect(()=>{
+    setAuth(store.isAuth);
+    UserService.getUserDetails().then((res) => {
+      setUsername(res.data.username)
+    })
+    console.log(store.isAuth);
+    console.log(username);
+    
+  }, [])
 
   return (
     <>
@@ -23,15 +35,15 @@ const Header: FC = () => {
               
             <Navbar.Toggle />
             <Navbar.Collapse>
-            <Nav>
+              <Nav>
                 <Nav.Link><Link to="/service" className='text-light'>Услуги</Link></Nav.Link>
                 <Nav.Link><Link to='/contacts' className='text-light'>Контакты</Link></Nav.Link>
                 <Nav.Link><Link to='/about' className='text-light'>О компании</Link></Nav.Link>
-            </Nav>
+              </Nav>
             </Navbar.Collapse>
 
             {
-              isAuth ? <AuthProfile username={localStorage.getItem('username') || '{}'}/> : <AuthButtons />
+              isAuth ? <AuthProfile username={username || '{}'}/> : <AuthButtons />
             }
 
           </Container>

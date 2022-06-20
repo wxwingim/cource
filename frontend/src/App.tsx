@@ -20,24 +20,25 @@ import AuthProfile from './components/Main/HeaderOptions/AuthProfile';
 import AuthButtons from './components/Main/HeaderOptions/AuthButtons';
 import UserProfile from './components/Main/PersonalAccountParts/UserProfile';
 import StatusCheckPage from './components/Main/StatusCheckPage';
+import UserService from './services/user.service';
 
 const App: FC = () => {
   const {store} = useContext(Context);
+
   const [isAuth, setAuth] = useState<boolean>(store.isAuth);
+  const [username, setUsername] = useState<string>('');
 
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      store.checkAuth();
-    }
+    // store.checkAuth()
+    // setAuth(store.isAuth);
+    UserService.getUserDetails().then((res) => {
+      setUsername(res.data.username);
+    });
+    if (username){
+      setAuth(true) 
+    } else setAuth(false)
   })
-
-  function LoginVerification(){
-    if (!isAuth && localStorage.getItem('username')){
-      return <AuthProfile username={localStorage.getItem('username') || '{}'} />
-    } else{
-      return <AuthButtons />    }
-  }
 
   return (
     <>
@@ -54,7 +55,9 @@ const App: FC = () => {
           </Nav>
           </Navbar.Collapse>
 
-          <LoginVerification/>
+          {
+            isAuth ? <AuthProfile username={username || ''} /> : <AuthButtons /> 
+          }
 
         </Container>
       </Navbar>

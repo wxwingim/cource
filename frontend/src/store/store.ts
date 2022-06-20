@@ -4,6 +4,8 @@ import axios from 'axios';
 import {AxiosResponse} from 'axios'
 import { AuthResponce } from '../models/AuthResponce';
 import authHeader from '../services/auth-header';
+import UserService from "../services/user.service";
+import { UserResponce } from "../models/UserResponce";
 
 
 const API_URL = "http://localhost:8080/";
@@ -29,12 +31,15 @@ export default class Store{
         try{
             const response = await AuthService.login(username, password);
             console.log(response);
-            localStorage.setItem('token', response.data.access_token);
             this.setAuth(true);
-            localStorage.setItem('username', response.data.username)
-            this.setUsername(localStorage.getItem('username') || '{}');
+            UserService.getUserDetails().then((res) => {
+                this.setUsername(res.data.username || "t");
+            });
+            console.log("login isAuth: " + this.isAuth);
+            console.log("login username: "+ this.username);
         } catch (e : any) {
             console.log(e.response?.data?.message);
+            console.log("login!?");
         }
     }
 
@@ -53,9 +58,7 @@ export default class Store{
 
     logout(){
         try{
-            // const response = await AuthService.logout();
-            localStorage.removeItem('token');
-            localStorage.removeItem('username')
+            AuthService.logout();
             this.setAuth(false);
             this.setUsername("");
         } catch (e : any) {
@@ -66,19 +69,13 @@ export default class Store{
     async checkAuth(){
 
         try{
-            // const response = await axios.get<AuthResponce>(API_URL + "messages", 
-            // { 
-            //     headers: {
-            //         Authorization: 'Bearer ' + localStorage.getItem('token')
-            //     } 
-            // })
-            // console.log(response);
-            // console.log(this.username);
-            // console.log(this.isAuth);
-            // console.log(localStorage.getItem('username'));
-            // this.setAuth(true);
-            // this.setUsername(response.data.username)
+            UserService.getUserDetails().then((res) => {
+                this.setUsername(res.data.username);
+            })
+            this.setAuth(true);
+
         } catch(e: any) {
+            this.setAuth(false);
             console.log(e.response?.data?.message);
         }
     }

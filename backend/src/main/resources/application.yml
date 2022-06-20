@@ -51,7 +51,8 @@ jpa:
 ---
 micronaut:
   security:
-    authentication: bearer
+#    authentication: bearer
+    authentication: cookie
     interceptUrlMap:
       - pattern: "/swagger/**"
         httpMethod: GET

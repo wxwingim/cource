@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Context } from '../../../index';
 import UserService from '../../../services/user.service';
 import { UserResponce } from '../../../models/UserResponce';
+import { observer } from 'mobx-react-lite';
 
 
 interface IProps {
@@ -16,9 +17,10 @@ const AuthProfile: FC<IProps> = (props) => {
     const {store} = useContext(Context);
 
     function logout(e: any){
-        UserService.setUser({} as UserResponce)
         store.logout();
-        localStorage.setAuth(false);
+        // UserService.setUser({} as UserResponce)
+        // store.logout();
+        // localStorage.setAuth(false);
     }
 
     return(
@@ -34,4 +36,4 @@ const AuthProfile: FC<IProps> = (props) => {
     )
 }
 
-export default AuthProfile;
+export default observer(AuthProfile);
