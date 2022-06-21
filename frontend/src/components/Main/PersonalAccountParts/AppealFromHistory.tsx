@@ -31,13 +31,20 @@ function AppealFromHistory() {
                     <Link to={'/'} className="breadcrumb-item text-dark"><HouseDoorFill className='mb-1'/></Link>
                     <Link to={'/account'} className="breadcrumb-item text-dark">Аккаунт</Link>
                     <Link to={'/account/history'} className="breadcrumb-item text-dark">История обращений</Link>
-                    <Breadcrumb.Item active>Новое обращение</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Обращение</Breadcrumb.Item>
                 </Breadcrumb>
             </Row>
 
             <Row className="pb-3">
                 <h2 className="h1 pb-3">{ order.model }</h2>
                 <p className='text-muted fw-bolder fs-4'>{ order.defect }</p>
+            </Row>
+
+            <Row className="pb-3">
+                <Stack direction="horizontal">
+                    <Link to="/" className="btn btn-outline-primary">Перейти к оплате</Link>
+
+                </Stack>
             </Row>
 
             <hr className="mb-5" />
@@ -84,12 +91,12 @@ function AppealFromHistory() {
                 <WorksTable id={order.id}/>
             </Row>
 
-            <Row className="mx-1">
+            {/* <Row className="mx-1">
                 <AppealCommentCard />
                 <AppealCommentCard />
-            </Row>
+            </Row> */}
 
-            <Row>
+            {/* <Row>
                 <Form>
                     <Form.Group>
                         <Form.Label className="text-muted h5">Сообщение</Form.Label>
@@ -105,7 +112,7 @@ function AppealFromHistory() {
 
             <Stack direction="horizontal" className="justify-content-end">
                 <Button variant="primary">Отправить</Button>
-            </Stack>
+            </Stack> */}
                     
             
         </Container>

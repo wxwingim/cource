@@ -19,17 +19,13 @@ class AuthService {
     }
 
     async register(username : string, password : string, lastName: string, firstName: string, middleName: string): Promise<AxiosResponse<AuthResponce>> {
-      return axios.post<AuthResponce>(API_URL + "register", {
+      return axios.post<AuthResponce>("/register", {
         username,
         password,
         lastName,
         firstName,
         middleName
       });
-    }
-
-    getCurrentUser() {
-      return localStorage.getItem('username') || '{}';
     }
 }
 

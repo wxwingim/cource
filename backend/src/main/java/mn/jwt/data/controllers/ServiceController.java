@@ -41,17 +41,6 @@ public class ServiceController {
         }
         return result;
     }
-//    @Get("/defects/{nameType}")
-//    @Secured(SecurityRule.IS_ANONYMOUS)
-//    public HashMap<String, List<Defects>> getDefects(String nameType){
-//        HashMap<String, List<Defects>> result = new HashMap<>();
-//        List<DefectTypes> defectTypes = serviceRepository.findAllDefectTypesByService(nameType);
-//        for(DefectTypes type: defectTypes){
-////            result.add(serviceRepository.findAllDefectsByType(type.getId()));
-//            result.put(type.getNameType(), serviceRepository.findAllDefectsByType(type.getId()));
-//        }
-//        return result;
-//    }
 
     @Get("/defectTypes/{nameType}")
     @Secured(SecurityRule.IS_ANONYMOUS)

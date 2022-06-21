@@ -30,8 +30,6 @@ const App: FC = () => {
 
 
   useEffect(() => {
-    // store.checkAuth()
-    // setAuth(store.isAuth);
     UserService.getUserDetails().then((res) => {
       setUsername(res.data.username);
     });

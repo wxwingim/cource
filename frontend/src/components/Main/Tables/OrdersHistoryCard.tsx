@@ -31,7 +31,7 @@ class OrdersHistoryCard extends React.Component<IProps, IState>{
             <Card className="p-3 mb-4 shadow-sm">
                 <Card.Body>
                     <Stack direction="horizontal"  className="justify-content-between">
-                        <Card.Title> { this.props.order.model} </Card.Title>
+                        <Card.Title>{this.props.order.deviceType.nameType} { this.props.order.model} </Card.Title>
                         <Badge pill bg="success" className="px-3 py-2">
                             { this.props.order.statusRepair.nametatus }
                         </Badge>

@@ -6,7 +6,6 @@ import mn.jwt.data.domain.DeviceTypes;
 
 import java.util.List;
 
-@Repository
 public interface DeviceTypesRepository {
     List<DeviceTypes> findAll();
 }

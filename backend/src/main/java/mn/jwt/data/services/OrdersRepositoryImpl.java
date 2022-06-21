@@ -8,6 +8,7 @@ import mn.jwt.data.repositories.OrdersRepository;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,13 +33,6 @@ public class OrdersRepositoryImpl implements OrdersRepository {
         return orderDtos;
     }
 
-//    @Override
-//    @ReadOnly
-//    public List<OrderRequests> findAll(Long id) {
-//        return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
-//                .getResultList();
-//    }
-
     @Override
     @ReadOnly
     public Optional<OrderDto> findById(Long id) {
@@ -52,14 +46,38 @@ public class OrdersRepositoryImpl implements OrdersRepository {
 //        return Optional.of(orderMapper.toDto((OrderRequests)order));
     }
 
-//    @Override
-//    @ReadOnly
-//    public Optional<OrderRequests> findById(Long id) {
-//        return entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.id = :id")
-//                .setParameter("id", id)
+    @Override
+    @ReadOnly
+    public Long getLastId() {
+        Optional<OrderDto> lastOrder = entityManager.createQuery("SELECT c FROM OrderRequests c ORDER BY c.id DESC")
+                .setMaxResults(1)
+                .getResultList()
+                .stream()
+                .findFirst()
+                .map(order -> orderMapper.toDto((OrderRequests)order));
+        return lastOrder.get().getId();
+    }
+
+    @Override
+    @Transactional
+    public void createOrder(OrderDto orderDto, Long userId) {
+        entityManager.createNativeQuery("INSERT INTO order_requests (id, addres, date_request, defect, equipment, mechanical_damage, model, quarantee, id_device_type, id_user, id_status_type)  " +
+                "VALUES (?, ?, now(), ?, ?, ?, ?, false, ?, ?, 12)")
+                .setParameter(1, getLastId() + 1)
+                .setParameter(2, orderDto.getAddres())
+                .setParameter(3, orderDto.getDefect())
+                .setParameter(4, orderDto.getEquipment())
+                .setParameter(5, orderDto.getMechanicalDamage())
+                .setParameter(6, orderDto.getModel())
+                .setParameter(7, orderDto.getDeviceType().getId())
+                .setParameter(8, userId)
+                .executeUpdate();
+//        return entityManager.createQuery("SELECT c FROM OrderRequests c ORDER BY c.id DESC")
 //                .setMaxResults(1)
 //                .getResultList()
 //                .stream()
-//                .findFirst();
-//    }
+//                .findFirst()
+//                .map(order -> orderMapper.toDto((OrderRequests)order));
+
+    }
 }

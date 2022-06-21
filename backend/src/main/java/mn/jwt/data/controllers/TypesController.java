@@ -23,7 +23,14 @@ public class TypesController {
 
     @Get("/devices")
     @Secured(SecurityRule.IS_ANONYMOUS)
-    public List<DeviceTypes> getServices(String nameType){
+    public List<DeviceTypes> getDevices(String nameType){
         return deviceTypesRepository.findAll();
     }
+
+    @Get("/all")
+    @Secured(SecurityRule.IS_ANONYMOUS)
+    public List<DeviceTypes> getAllDevices(){
+        return deviceTypesRepository.findAll();
+    }
+
 }

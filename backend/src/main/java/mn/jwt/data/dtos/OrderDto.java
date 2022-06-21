@@ -27,7 +27,9 @@ public class OrderDto {
     private String mechanicalDamage;
     private Date dateRequest;
     private Date dateLimit;
-    private boolean quarantee;
+    private Boolean quarantee;
     private DeviceTypes deviceType;
     private StatusesRepair statusRepair;
+    private String addres;
+
 }

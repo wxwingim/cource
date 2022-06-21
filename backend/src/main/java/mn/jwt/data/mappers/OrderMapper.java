@@ -18,9 +18,10 @@ public class OrderMapper {
                 .equipment(orderDto.getEquipment())
                 .dateRequest(orderDto.getDateRequest())
                 .dateLimit(orderDto.getDateLimit())
-                .quarantee(orderDto.isQuarantee())
+                .quarantee(orderDto.getQuarantee())
                 .deviceType(orderDto.getDeviceType())
                 .statusRepair(orderDto.getStatusRepair())
+                .addres(orderDto.getAddres())
 //                .consumptions(orderDto.getConsumptions())
 //                .works(orderDto.getWorks())
                 .build();
@@ -39,6 +40,7 @@ public class OrderMapper {
                 .quarantee(orderRequest.isQuarantee())
                 .deviceType(orderRequest.getDeviceType())
                 .statusRepair(orderRequest.getStatusRepair())
+                .addres(orderRequest.getAddres())
 //                .consumptions(orderRequest.getConsumptions())
 //                .works(orderRequest.getWorks())
                 .build();

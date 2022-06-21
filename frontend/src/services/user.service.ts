@@ -6,6 +6,7 @@ import { OrderRes, Works } from '../models/OrderResponce'
 import { get } from 'http';
 import { set } from 'mobx';
 import { isAwaitExpression } from 'typescript';
+import { DeviceType } from '../models/OrderResponce';
 
 const API_URL = 'http://localhost:8080/';
 
@@ -37,6 +38,16 @@ class UserService {
 
   async getWorks(id: string){
     return await axios.post<Works[]>("/history/works/" + id);
+  }
+
+  async createOrder(model : string, defect: string, equipment: string, mechanicalDamage: string, deviceType: DeviceType){
+    return await axios.post<OrderRes>("/history/create", {
+      model,
+      defect,
+      equipment,
+      mechanicalDamage,
+      deviceType
+    })
   }
 
 }

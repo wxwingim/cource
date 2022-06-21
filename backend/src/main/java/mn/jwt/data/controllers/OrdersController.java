@@ -52,4 +52,11 @@ public class OrdersController {
     @Post("/works/{id}")
     @Secured(IS_AUTHENTICATED)
     public List<WorksDto> getWorks(Long id){ return worksRepository.findAll(id); }
+
+    @Post("/create")
+    @Secured(IS_AUTHENTICATED)
+    public void createOrder(Principal principal, OrderDto orderDto){
+        Optional<User> user = userService.findUserByName(principal.getName());
+        ordersRepository.createOrder(orderDto, user.get().getId());
+    }
 }

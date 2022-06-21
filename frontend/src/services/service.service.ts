@@ -1,5 +1,6 @@
 import axios from "axios";
 import {defect, defectType} from '../models/ServiceModel';
+import { DeviceType } from '../models/OrderResponce';
 
 const SERVICE_API_BASE_URL = "http://localhost:8080/service";
 
@@ -14,6 +15,10 @@ class ServiceService {
 
     getDefectTypes(type: string){
         return axios.get<defectType[]>(SERVICE_API_BASE_URL+ "/defectTypes/"+ type);
+    }
+
+    getDeviceTypes(){
+        return axios.get<DeviceType[]>("http://localhost:8080/types/all");
     }
 }
 

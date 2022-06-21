@@ -11,4 +11,8 @@ public interface OrdersRepository {
     List<OrderDto> findAll(Long id);
 
     Optional<OrderDto> findById(Long id);
+
+    Long getLastId();
+
+    void createOrder(OrderDto orderDto, Long userId);
 }
