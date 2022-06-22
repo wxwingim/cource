@@ -1,6 +1,9 @@
 package mn.jwt.data.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,11 +13,15 @@ import java.util.Set;
 
 import static javax.persistence.GenerationType.AUTO;
 
+@NoArgsConstructor
+@AllArgsConstructor
+//@Data
+@Builder
 @Entity
 @Table(name = "consumptions")
 public class Consumptions implements Serializable {
     @Id
-    @GeneratedValue(strategy = AUTO)
+//    @GeneratedValue(strategy = AUTO)
     private Long id;
 
     @NotNull

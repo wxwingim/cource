@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Container, ListGroup, Table } from 'react-bootstrap';
 import { Link,useParams } from 'react-router-dom';
 import { BoxArrowUpRight, InfoSquareFill } from 'react-bootstrap-icons'
-import { Works, Service } from '../../../models/OrderResponce';
+import { Works, Service, Consumption } from '../../../models/OrderResponce';
 import UserService from '../../../services/user.service';
  
 
@@ -10,11 +10,15 @@ function WorksTable(props: any) {
 
     let idOrder = useParams<{ id:string }>();
     const [works, setWorks] = useState<Works[]>([] as Works[]);
+    const [consumptions, setConsumptions] = useState<Consumption[]>([] as Consumption[]);
 
     useEffect(() => {
         UserService.getWorks(idOrder.id || '').then(res => {
             setWorks(res.data);
-        })
+        });
+        UserService.getConsumptions(idOrder.id || '').then(res => {
+            setConsumptions(res.data);
+        });
     }, []);
 
     return (
@@ -43,8 +47,20 @@ function WorksTable(props: any) {
             <ListGroup as="ol" numbered className="mb-5">
                 <ListGroup.Item variant="dark" className="d-flex justify-content-between align-items-start">
                     <div className="ms-2 me-auto">Наименование</div>
-                    <div>Цена</div>
+                    <div className="ms-2 me-auto">Цена за единицу</div>
+                    <div className="ms-2 me-auto">Количество</div>
+                    <div className="ms-2 me-auto">Сумма</div>
                 </ListGroup.Item>
+                {
+                    consumptions.map((consumption: Consumption) => 
+                        <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
+                            <div className="ms-2 me-auto">{ consumption.name || '' }</div>
+                            <div className="ms-2 me-auto">{ consumption.retailPrice || '' }</div>
+                            <div className="ms-2 me-auto">{ consumption.amount || '' }</div>
+                            <div className="ms-2 me-auto">{ consumption.retailPrice * consumption.amount || '' }</div>
+                        </ListGroup.Item>
+                    )
+                }
             </ListGroup>
 
         </Container>

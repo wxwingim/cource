@@ -1,10 +1,10 @@
-export interface defect{
-    "id" : number,
-    "name" : string,
-    "defectType" : defectType
+export interface Defect{
+    id : number,
+    name : string,
+    defectType : DefectType
 }
 
-export interface defectType{
-    "id" : number,
-    "nameType" : string
+export interface DefectType{
+    id : number,
+    nameType : string
 }

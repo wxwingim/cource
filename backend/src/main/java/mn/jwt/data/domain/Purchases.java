@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.AUTO;
 @Table(name = "purchases")
 public class Purchases implements Serializable {
     @Id
-    @GeneratedValue(strategy = AUTO)
+//    @GeneratedValue(strategy = AUTO)
     private Long id;
 
     @NotNull
@@ -28,7 +28,7 @@ public class Purchases implements Serializable {
 
     @NotNull
     @Column(name = "purchase_price", precision=12, scale=2)
-    @Type(type = "big_decimal")
+//    @Type(type = "big_decimal")
     private Double purchasePrice;
 
     @NotNull
@@ -37,7 +37,7 @@ public class Purchases implements Serializable {
 
     @NotNull
     @Column(name = "retail_price", precision=12, scale=2)
-    @Type(type = "big_decimal")
+//    @Type(type = "big_decimal")
     private Double retailPrice;
 
     @NotNull

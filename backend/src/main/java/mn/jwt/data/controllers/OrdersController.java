@@ -7,8 +7,10 @@ import io.micronaut.security.annotation.Secured;
 import mn.jwt.data.domain.OrderRequests;
 import mn.jwt.data.domain.User;
 import mn.jwt.data.domain.Works;
+import mn.jwt.data.dtos.ConsumptionDto;
 import mn.jwt.data.dtos.OrderDto;
 import mn.jwt.data.dtos.WorksDto;
+import mn.jwt.data.repositories.ConsumptionsRepository;
 import mn.jwt.data.repositories.OrdersRepository;
 import mn.jwt.data.repositories.WorksRepository;
 import mn.jwt.data.services.UserService;
@@ -25,11 +27,13 @@ public class OrdersController {
     OrdersRepository ordersRepository;
     UserService userService;
     WorksRepository worksRepository;
+    ConsumptionsRepository consumptionsRepository;
 
-    public OrdersController(OrdersRepository ordersRepository, UserService userService, WorksRepository worksRepository) {
+    public OrdersController(OrdersRepository ordersRepository, UserService userService, WorksRepository worksRepository, ConsumptionsRepository consumptionsRepository) {
         this.ordersRepository = ordersRepository;
         this.userService = userService;
         this.worksRepository = worksRepository;
+        this.consumptionsRepository = consumptionsRepository;
     }
 
     @Post("/all")
@@ -52,6 +56,12 @@ public class OrdersController {
     @Post("/works/{id}")
     @Secured(IS_AUTHENTICATED)
     public List<WorksDto> getWorks(Long id){ return worksRepository.findAll(id); }
+
+    @Post("/consumptions/{id}")
+    @Secured(IS_AUTHENTICATED)
+    public List<ConsumptionDto> getConsumptions(Long id) {
+        return consumptionsRepository.findByOrderId(id);
+    }
 
     @Post("/create")
     @Secured(IS_AUTHENTICATED)

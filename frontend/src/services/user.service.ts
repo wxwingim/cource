@@ -2,7 +2,7 @@ import axios from 'axios';
 import {AxiosResponse} from 'axios'
 import authHeader from './auth-header';
 import { UserResponce } from '../models/UserResponce'; 
-import { OrderRes, Works } from '../models/OrderResponce'
+import { OrderRes, Works, Consumption } from '../models/OrderResponce'
 import { get } from 'http';
 import { set } from 'mobx';
 import { isAwaitExpression } from 'typescript';
@@ -40,6 +40,10 @@ class UserService {
     return await axios.post<Works[]>("/history/works/" + id);
   }
 
+  async getConsumptions(id : string){
+    return await axios.post<Consumption[]>("/history/consumptions/" + id);
+  }
+
   async createOrder(model : string, defect: string, equipment: string, mechanicalDamage: string, deviceType: DeviceType){
     return await axios.post<OrderRes>("/history/create", {
       model,
@@ -48,6 +52,14 @@ class UserService {
       mechanicalDamage,
       deviceType
     })
+  }
+
+  async getMail(id: string){
+    await axios.post("/mail/" + id);
+  }
+
+  async getPdf() {
+    return await axios.get(API_URL + 'pdf', { responseType: 'blob' });
   }
 
 }

@@ -41,7 +41,7 @@ class SpecificService extends React.Component<IProps, IState> {
                         </Col>             
                     </Row>      
 
-                    <Row className='pb-3'>
+                    <Row className='pb-5'>
                         <Col>
                             <h4 className='h1 text-dark'>Распространенные неисправности</h4>
                         </Col>

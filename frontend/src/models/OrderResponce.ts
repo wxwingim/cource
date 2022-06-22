@@ -34,3 +34,9 @@ export interface Works{
     id: number,
     service: Service
 }
+
+export interface Consumption{
+    name: string,
+    retailPrice: number,
+    amount: number
+}

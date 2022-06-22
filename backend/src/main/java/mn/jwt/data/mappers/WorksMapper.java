@@ -12,7 +12,6 @@ public class WorksMapper {
     public Works toEntity(WorksDto worksDto) {
         Works work = Works.builder()
                 .id(worksDto.getId())
-//                .orderRequest(worksDto.getOrderRequest())
                 .service(worksDto.getService())
                 .build();
         return work;
@@ -21,7 +20,6 @@ public class WorksMapper {
     public WorksDto toDto(Works work){
         return WorksDto.builder()
                 .id(work.getId())
-//                .orderRequest(work.getOrderRequest())
                 .service(work.getService())
                 .build();
     }

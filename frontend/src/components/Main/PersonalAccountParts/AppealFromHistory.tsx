@@ -8,6 +8,10 @@ import {OrderRes, DeviceType, StatusRepair} from '../../../models/OrderResponce'
 import UserService from '../../../services/user.service';
 import {PrettyFormat} from '../../../Custom/PrettyFormat';
 import WorksTable from '../Tables/WorksTable';
+// import Akt from '../../docs/akt';
+import ReactToPrint from 'react-to-print';
+import { saveAs } from 'file-saver';
+
 
 function AppealFromHistory() {
     let id = useParams<{ id:string }>();
@@ -22,6 +26,18 @@ function AppealFromHistory() {
             setStatusRepair(order.data.statusRepair);
         });
     }, [])
+
+    function payment(): void{
+        UserService.getMail(id.id || '');
+    }
+
+    function createAkt() {
+        UserService.getPdf().then((res) => {
+            const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
+
+            saveAs(pdfBlob, 'newPdf.pdf');
+        })
+    }
 
     return (
         <Container fluid className='bg-light p-3'>
@@ -42,8 +58,8 @@ function AppealFromHistory() {
 
             <Row className="pb-3">
                 <Stack direction="horizontal">
-                    <Link to="/" className="btn btn-outline-primary">Перейти к оплате</Link>
-
+                    <Link to="/" onClick={ payment } className="btn btn-outline-primary">Перейти к оплате</Link>
+                    <Button onClick={ createAkt } variant="outline-primary" type="button">Акт об оказании услуг</Button>
                 </Stack>
             </Row>
 
@@ -91,30 +107,6 @@ function AppealFromHistory() {
                 <WorksTable id={order.id}/>
             </Row>
 
-            {/* <Row className="mx-1">
-                <AppealCommentCard />
-                <AppealCommentCard />
-            </Row> */}
-
-            {/* <Row>
-                <Form>
-                    <Form.Group>
-                        <Form.Label className="text-muted h5">Сообщение</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-
-                    <Form.Group controlId="formFile" className="my-3">
-                        <Form.Control type="file" />
-                    </Form.Group>
-                </Form> 
-
-            </Row>
-
-            <Stack direction="horizontal" className="justify-content-end">
-                <Button variant="primary">Отправить</Button>
-            </Stack> */}
-                    
-            
         </Container>
     );
 }

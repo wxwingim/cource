@@ -27,7 +27,7 @@ import static javax.persistence.GenerationType.AUTO;
 @Table(name = "order_requests")
 public class OrderRequests implements Serializable {
     @Id
-    @GeneratedValue(strategy = AUTO)
+//    @GeneratedValue(strategy = AUTO)
     private Long id;
 
     @NotNull

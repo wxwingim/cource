@@ -1,5 +1,5 @@
 import axios from "axios";
-import {defect, defectType} from '../models/ServiceModel';
+import {Defect, DefectType} from '../models/ServiceModel';
 import { DeviceType } from '../models/OrderResponce';
 
 const SERVICE_API_BASE_URL = "http://localhost:8080/service";
@@ -10,11 +10,11 @@ class ServiceService {
     }
 
     getfRequentDefects(type : string){
-        return axios.get<defect[][]>(SERVICE_API_BASE_URL + "/defects/" + type);
+        return axios.get<Defect[][]>(SERVICE_API_BASE_URL + "/defects/" + type);
     }
 
-    getDefectTypes(type: string){
-        return axios.get<defectType[]>(SERVICE_API_BASE_URL+ "/defectTypes/"+ type);
+    async getDefectTypes(type: string){
+        return await axios.get<DefectType[]>(SERVICE_API_BASE_URL+ "/defectTypes/"+ type);
     }
 
     getDeviceTypes(){
