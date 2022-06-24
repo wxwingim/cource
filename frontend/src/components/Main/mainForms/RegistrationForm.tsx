@@ -1,26 +1,41 @@
 import React, {FC, useState, useContext} from 'react';
-import { Container, Row, Button, Stack, Col, Form } from 'react-bootstrap';
+import { Container, Row, Button, Stack, Col, Form, Alert } from 'react-bootstrap';
 import { Google } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import "./../../custom.css";
 // import AuthService from '../../../services/auth.service';
 import {Context} from '../../../index';
 import { observer } from 'mobx-react-lite';
 
-
 const RegistrationForm: FC = () => {
 
-
+    let navigate = useNavigate();
     const [lastName, setLName] = useState<string>('');
     const [firstName, setFName] = useState<string>('');
     const [middleName, setMName] = useState<string>('');
     const [username, setUsername] = useState<string>('');
+    const [phone, setPhone] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const {store} = useContext(Context);
 
-    function registrationUser(e: any){
-        store.register(username, password, lastName, firstName, middleName);
+
+    function registrationUser(event: any){
+        const form = event.currentTarget;
+
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        } else{
+            setValidated(true);
+        }
+
+        if(validated){
+            store.register(username, password, lastName, firstName, middleName, phone);
+            navigate("/success/registration");
+        }
     }
+
+    const [validated, setValidated] = useState(false);
 
     return(
         <Container className='mx-auto col-md-5 m-5 bg-light rounded p-5'>
@@ -30,13 +45,14 @@ const RegistrationForm: FC = () => {
             </Row>
             
             <Row className='mt-4'>
-                <Form>
+                <Form noValidate validated={validated}>
                     <Form.Group as={Row} className="py-3" controlId="formHorizontalPassword">
                         <Col>
                             <Form.Label column sm={4}>Фамилия</Form.Label>
                         </Col>
                         <Col sm={9}>
                             <Form.Control 
+                                required
                                 onChange={e => setLName(e.target.value)}
                                 value={lastName}
                                 type="text" 
@@ -50,6 +66,7 @@ const RegistrationForm: FC = () => {
                         </Col>
                         <Col sm={9}>
                             <Form.Control 
+                                required
                                 onChange={e => setFName(e.target.value)}
                                 value={firstName}
                                 type="text" 
@@ -69,6 +86,7 @@ const RegistrationForm: FC = () => {
                                 placeholder="Иванович" />
                         </Col>
                     </Form.Group>
+                    
 
                     <Form.Group as={Row} className="py-4" controlId="formHorizontalTel">
                         <Col>
@@ -76,6 +94,7 @@ const RegistrationForm: FC = () => {
                         </Col>                    
                         <Col sm={9}>
                             <Form.Control 
+                                required
                                 onChange={e => setUsername(e.target.value)}
                                 value={username}
                                 type="email" 
@@ -83,12 +102,29 @@ const RegistrationForm: FC = () => {
                         </Col>                   
                     </Form.Group>
 
+                    <Form.Group as={Row} className="py-4" controlId="formHorizontalTel">
+                        <Col>
+                            <Form.Label column>Телефон</Form.Label>
+                        </Col>                    
+                        <Col sm={9}>
+                            <Form.Control 
+                                required
+                                onChange={e => setPhone(e.target.value)}
+                                value={phone}
+                                pattern="8[0-9]{10}"
+                                type="tel" 
+                                placeholder="81234567890"/>
+                        </Col>                   
+                    </Form.Group>
+
+
                     <Form.Group as={Row} className="py-3" controlId="formHorizontalPassword">
                         <Col>
                             <Form.Label column sm={4}>Пароль</Form.Label>
                         </Col>
                         <Col sm={9}>
                             <Form.Control 
+                                required
                                 onChange={e => setPassword(e.target.value)}
                                 value={password}
                                 type="password" 
@@ -96,13 +132,11 @@ const RegistrationForm: FC = () => {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group className='pt-3'>
-                        <Stack>
-                            <Link onClick={registrationUser} to='/account'  className='btn-block btn btn-dark'>Зарегистрироваться</Link> 
+                    <Form.Group as={Row} className='pt-3'>
+                            <Button type="button" onClick={registrationUser} variant="dark">Зарегистрироваться</Button> 
                             <p className='pt-2 form-text'>
                                 Продолжая, вы соглашаетесь <a href='#'>со сбором и обработкой персональных данных и пользовательским соглашением</a>
                             </p>
-                        </Stack>
                     </Form.Group>              
                 </Form>
             </Row>

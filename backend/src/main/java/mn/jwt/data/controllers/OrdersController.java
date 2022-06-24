@@ -23,6 +23,7 @@ import static io.micronaut.security.rules.SecurityRule.IS_ANONYMOUS;
 import static io.micronaut.security.rules.SecurityRule.IS_AUTHENTICATED;
 
 @Controller("/history")
+@Secured(IS_ANONYMOUS)
 public class OrdersController {
     OrdersRepository ordersRepository;
     UserService userService;

@@ -32,8 +32,8 @@ class UserService {
     return await axios.post<OrderRes>("/history/appeal/" + id)
   }
 
-  async getOrderAnonim(id: string){
-    return await axios.get<OrderRes>(API_URL + "/history/search/" + id)
+  getOrderAnonim(id: string){
+    return axios.get<OrderRes>(API_URL + "history/search/" + id)
   }
 
   async getWorks(id: string){
@@ -45,7 +45,7 @@ class UserService {
   }
 
   async createOrder(model : string, defect: string, equipment: string, mechanicalDamage: string, deviceType: DeviceType){
-    return await axios.post<OrderRes>("/history/create", {
+    return await axios.post("/history/create", {
       model,
       defect,
       equipment,
@@ -55,11 +55,11 @@ class UserService {
   }
 
   async getMail(id: string){
-    await axios.post("/mail/" + id);
+    await axios.get("/mail/send/" + id);
   }
 
-  async getPdf() {
-    return await axios.get(API_URL + 'pdf', { responseType: 'blob' });
+  async getPdf(id: string) {
+    return await axios.get('/pdf/' + id, { responseType: 'blob' });
   }
 
 }

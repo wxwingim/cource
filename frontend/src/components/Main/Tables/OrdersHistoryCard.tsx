@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { BoxArrowUpRight, InfoSquareFill } from 'react-bootstrap-icons';
 import { OrderRes, DeviceType, StatusRepair } from '../../../models/OrderResponce';
 import {PrettyFormat} from '../../../Custom/PrettyFormat';
+import { PillColor } from '../../../Custom/servicesToRus';
  
 
 interface IProps {
@@ -32,7 +33,7 @@ class OrdersHistoryCard extends React.Component<IProps, IState>{
                 <Card.Body>
                     <Stack direction="horizontal"  className="justify-content-between">
                         <Card.Title>{this.props.order.deviceType.nameType} { this.props.order.model} </Card.Title>
-                        <Badge pill bg="success" className="px-3 py-2">
+                        <Badge pill bg={ PillColor(this.props.order.statusRepair.id) } className="px-3 py-2">
                             { this.props.order.statusRepair.nametatus }
                         </Badge>
                     </Stack>  

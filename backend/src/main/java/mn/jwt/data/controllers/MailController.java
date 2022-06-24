@@ -28,14 +28,10 @@ public class MailController {
         this.userService = userService;
     }
 
-    @Post("/{id}")
-    public void getMail(Long id) {
-    }
-
     @Get("/send/{id}")
     public HttpResponse<?> getEmail(Principal principal, Long id){
         Optional<User> user = userService.findUserByName(principal.getName());
-        sender.send("Счет на оплату", id, "pestova.lisa@gmail.com", user.get().getUsername());
+        sender.send("Счет на оплату", id, user.get(), "pestova.lisa@gmail.com", user.get().getUsername());
         return HttpResponse.ok();
     }
 }

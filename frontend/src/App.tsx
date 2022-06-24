@@ -21,6 +21,8 @@ import AuthButtons from './components/Main/HeaderOptions/AuthButtons';
 import UserProfile from './components/Main/PersonalAccountParts/UserProfile';
 import StatusCheckPage from './components/Main/StatusCheckPage';
 import UserService from './services/user.service';
+import SuccessRegistration from './components/Main/SuccessComponents/SuccessRegistration';
+import SuccessAppeal from './components/Main/SuccessComponents/SuccessAppeal';
 
 const App: FC = () => {
   const {store} = useContext(Context);
@@ -35,7 +37,9 @@ const App: FC = () => {
     });
     if (username){
       setAuth(true) 
-    } else setAuth(false)
+    } else {
+      setAuth(false)
+    }
   })
 
   return (
@@ -89,6 +93,9 @@ const App: FC = () => {
 
             <Route path='profile' element={<UserProfile />} />
           </Route>
+
+          <Route path='success/registration' element={<SuccessRegistration />} />
+          <Route path='success/appeal' element={<SuccessAppeal />} />
           
         </Route>
       </Routes>

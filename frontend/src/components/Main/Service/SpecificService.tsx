@@ -4,7 +4,7 @@ import ServiceTable from '../Tables/ServiceTable';
 import { Container, Row, Col, Nav, Stack, Card, ListGroup, Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { HouseDoorFill } from 'react-bootstrap-icons';
-import ToRus from './../../../Custom/servicesToRus';
+import { ToRus } from './../../../Custom/servicesToRus';
 
 import ServiceDefects from './ServiceDefects';
 

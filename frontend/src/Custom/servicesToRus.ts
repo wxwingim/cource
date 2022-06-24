@@ -1,40 +1,75 @@
-export default function ToRus(origString: string) : string {
+export function ToRus(origString: string) : string {
     switch(origString){
         case 'monoblocks': {
             return 'моноблоков';
-            break;
         }
         case 'tablets': {
             return 'планшетов';
-            break;
         }
         case 'phones': {
             return 'телефонов';
-            break;
         }
         case 'laptops': {
             return 'ноутбуков';
-            break;
         }
         case 'computers': {
             return 'компьютеров';
-            break;
         }
         case 'console': {
             return 'приставок';
-            break;
         }
         case 'cameras': {
             return 'фотоаппаратов';
-            break;
         }
         case 'watch': {
             return 'часов';
-            break;
         }
         default: { 
             return '';
-            break; 
+        }
+    }
+}
+
+export function PillColor(id: number) :string {
+    switch(id){
+        case 1: {
+            return 'success';
+        }
+        case 2: {
+            return 'warning';
+        }
+        case 3: {
+            return 'primary';
+        }
+        case 4: {
+            return 'warning';
+        }
+        case 5: {
+            return 'danger';
+        }
+        case 6: {
+            return 'danger';
+        }
+        case 7: {
+            return 'secondary';
+        }
+        case 8: {
+            return 'success';
+        }
+        case 9: {
+            return 'success';
+        }
+        case 10: {
+            return 'light';
+        }
+        case 11: {
+            return 'dark';
+        }
+        case 12: {
+            return 'info';
+        }
+        default: { 
+            return 'light';
         }
     }
 }

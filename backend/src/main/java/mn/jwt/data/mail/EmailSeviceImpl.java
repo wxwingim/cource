@@ -1,5 +1,6 @@
 package mn.jwt.data.mail;
 
+import mn.jwt.data.domain.User;
 import mn.jwt.data.services.PdfService;
 
 import java.util.*;
@@ -31,7 +32,7 @@ public class EmailSeviceImpl {
         props.put("mail.smtp.port", "587");
     }
 
-    public void send(String subject, Long id, String fromEmail, String toEmail){
+    public void send(String subject, Long id, User user, String fromEmail, String toEmail){
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -51,7 +52,7 @@ public class EmailSeviceImpl {
             // Часть сообщения
             BodyPart messageBodyPart = new MimeBodyPart();
 
-            DataSource dataSource = new ByteArrayDataSource( mailGenerator.generateMail() , "application/pdf");
+            DataSource dataSource = new ByteArrayDataSource( mailGenerator.generateMail(id, user) , "application/pdf");
 
             messageBodyPart.setDataHandler(new DataHandler(dataSource));
             messageBodyPart.setFileName("check.pdf");

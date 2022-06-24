@@ -36,4 +36,4 @@ const AuthProfile: FC<IProps> = (props) => {
     )
 }
 
-export default observer(AuthProfile);
+export default AuthProfile;

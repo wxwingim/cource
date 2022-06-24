@@ -33,7 +33,7 @@ export default class Store{
             console.log(response);
             this.setAuth(true);
             UserService.getUserDetails().then((res) => {
-                this.setUsername(res.data.username || "t");
+                this.setUsername(res.data.username || "");
             });
             console.log("login isAuth: " + this.isAuth);
             console.log("login username: "+ this.username);
@@ -43,14 +43,11 @@ export default class Store{
         }
     }
 
-    async register(username : string, password : string, lastName: string, firstName: string, middleName: string){
+    async register(username : string, password : string, lastName: string, firstName: string, middleName: string, phone: string){
         try{
-            const response = await AuthService.register(username, password, lastName, firstName, middleName);
+            const response = await AuthService.register(username, password, lastName, firstName, middleName, phone);
             console.log(response);
-            localStorage.setItem('token', response.data.access_token);
-            this.setAuth(true);
-            localStorage.setItem('username', response.data.username);
-            this.setUsername(localStorage.getItem('username') || '{}');
+            // this.setAuth(true);
         } catch (e : any) {
             console.log(e.response?.data?.message);
         }

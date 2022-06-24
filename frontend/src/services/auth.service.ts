@@ -18,13 +18,14 @@ class AuthService {
       axios.post("/logout");
     }
 
-    async register(username : string, password : string, lastName: string, firstName: string, middleName: string): Promise<AxiosResponse<AuthResponce>> {
-      return axios.post<AuthResponce>("/register", {
+    async register(username : string, password : string, lastName: string, firstName: string, middleName: string, phone: string): Promise<AxiosResponse<AuthResponce>> {
+      return axios.post<AuthResponce>(API_URL + "signup", {
         username,
         password,
         lastName,
         firstName,
-        middleName
+        middleName,
+        phone
       });
     }
 }

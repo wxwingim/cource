@@ -11,6 +11,7 @@ import WorksTable from '../Tables/WorksTable';
 // import Akt from '../../docs/akt';
 import ReactToPrint from 'react-to-print';
 import { saveAs } from 'file-saver';
+import { PillColor } from '../../../Custom/servicesToRus';
 
 
 function AppealFromHistory() {
@@ -32,7 +33,7 @@ function AppealFromHistory() {
     }
 
     function createAkt() {
-        UserService.getPdf().then((res) => {
+        UserService.getPdf(id.id || '').then((res) => {
             const pdfBlob = new Blob([res.data], { type: 'application/pdf' });
 
             saveAs(pdfBlob, 'newPdf.pdf');
@@ -78,7 +79,7 @@ function AppealFromHistory() {
                         <p className="pb-3">{ order.dateLimit ? PrettyFormat.Deserialize(order.dateLimit) : '-' }</p>
                     </Col>
                     <Col>                    
-                        <Badge pill bg="success" className="px-3 py-2">
+                        <Badge pill bg={ PillColor(statusRepair.id) } className="px-3 py-2">
                             { statusRepair.nametatus || ''} 
                         </Badge> 
                     </Col>

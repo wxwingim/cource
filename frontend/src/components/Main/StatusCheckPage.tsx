@@ -81,6 +81,7 @@ function StatusCheckPage() {
       }
     } catch (e : any) {
       console.log(e.response?.data?.message);
+      setMessage('Заказ не найден');
       return false;
     }
   }

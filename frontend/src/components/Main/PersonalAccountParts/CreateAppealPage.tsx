@@ -6,10 +6,6 @@ import ServiceService from '../../../services/service.service';
 import { DeviceType, OrderRes, StatusRepair } from '../../../models/OrderResponce';
 import UserService from '../../../services/user.service';
 
-function delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
-
 function CreateAppealPage() {
 
     let navigate = useNavigate();
@@ -31,7 +27,7 @@ function CreateAppealPage() {
         })
     }, []);
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: any) => {
         const form = event.currentTarget;
         if (form.checkValidity() === false){
             event.preventDefault();
@@ -43,8 +39,7 @@ function CreateAppealPage() {
                 nameType: selectedValue 
             }
             UserService.createOrder(model, defect, equipment, mechanicalDamage, devT);
-            delay(1000);
-            navigate("/account/history");
+            navigate("/success/appeal");
         }
     }
 
@@ -65,7 +60,7 @@ function CreateAppealPage() {
 
             <Row>
                 <Card className="p-4 mx-auto col-md-6">
-                    <Form noValidate validated={validated} onSubmit={ handleSubmit }>            
+                    <Form noValidate validated={validated}>            
 
                         <Form.Group as={Row} className="mt-5">
                             <Form.Group as={Col}>
@@ -135,8 +130,9 @@ function CreateAppealPage() {
                         </Form.Group>
 
                         <Stack direction="horizontal" className="justify-content-end mt-5">
-                            <Button type="submit" 
+                            <Button type="button" 
                                     variant="primary"
+                                    onClick={ handleSubmit }
                                     >Отправить</Button>
                         </Stack>
                     </Form>
