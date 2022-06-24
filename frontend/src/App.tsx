@@ -23,11 +23,12 @@ import StatusCheckPage from './components/Main/StatusCheckPage';
 import UserService from './services/user.service';
 import SuccessRegistration from './components/Main/SuccessComponents/SuccessRegistration';
 import SuccessAppeal from './components/Main/SuccessComponents/SuccessAppeal';
+import SuccessPayment from './components/Main/SuccessComponents/SuccessPayment';
+
 
 const App: FC = () => {
   const {store} = useContext(Context);
 
-  const [isAuth, setAuth] = useState<boolean>(store.isAuth);
   const [username, setUsername] = useState<string>('');
 
 
@@ -35,11 +36,6 @@ const App: FC = () => {
     UserService.getUserDetails().then((res) => {
       setUsername(res.data.username);
     });
-    if (username){
-      setAuth(true) 
-    } else {
-      setAuth(false)
-    }
   })
 
   return (
@@ -58,7 +54,7 @@ const App: FC = () => {
           </Navbar.Collapse>
 
           {
-            isAuth ? <AuthProfile username={username || ''} /> : <AuthButtons /> 
+            store.isAuth ? <AuthProfile username={username || ''} /> : <AuthButtons /> 
           }
 
         </Container>
@@ -96,6 +92,8 @@ const App: FC = () => {
 
           <Route path='success/registration' element={<SuccessRegistration />} />
           <Route path='success/appeal' element={<SuccessAppeal />} />
+          <Route path='success/payment' element={<SuccessPayment />} />
+
           
         </Route>
       </Routes>

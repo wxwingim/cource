@@ -8,10 +8,10 @@ import {OrderRes, DeviceType, StatusRepair} from '../../../models/OrderResponce'
 import UserService from '../../../services/user.service';
 import {PrettyFormat} from '../../../Custom/PrettyFormat';
 import WorksTable from '../Tables/WorksTable';
-// import Akt from '../../docs/akt';
 import ReactToPrint from 'react-to-print';
 import { saveAs } from 'file-saver';
 import { PillColor } from '../../../Custom/servicesToRus';
+import DocsButtons from './DocsButtons';
 
 
 function AppealFromHistory() {
@@ -27,10 +27,6 @@ function AppealFromHistory() {
             setStatusRepair(order.data.statusRepair);
         });
     }, [])
-
-    function payment(): void{
-        UserService.getMail(id.id || '');
-    }
 
     function createAkt() {
         UserService.getPdf(id.id || '').then((res) => {
@@ -57,10 +53,13 @@ function AppealFromHistory() {
                 <p className='text-muted fw-bolder fs-4'>{ order.defect }</p>
             </Row>
 
+            {
+                statusRepair.id === 9  ? <DocsButtons id={id.id}/> : null
+            }
+
             <Row className="pb-3">
                 <Stack direction="horizontal">
-                    <Link to="/" onClick={ payment } className="btn btn-outline-primary">Перейти к оплате</Link>
-                    <Button onClick={ createAkt } variant="outline-primary" type="button">Акт об оказании услуг</Button>
+                    <Button onClick={ createAkt } variant="outline-primary" type="button">Скачать Акт об оказании услуг</Button>
                 </Stack>
             </Row>
 

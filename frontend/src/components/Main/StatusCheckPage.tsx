@@ -81,7 +81,7 @@ function StatusCheckPage() {
       }
     } catch (e : any) {
       console.log(e.response?.data?.message);
-      setMessage('Заказ не найден');
+      // setMessage('Заказ не найден');
       return false;
     }
   }
@@ -96,7 +96,7 @@ function StatusCheckPage() {
 
   return (
 
-    <Container fluid className='bg-light p-3'>
+    <Container fluid className='bg-light p-3  flex-fill'>
       <Container>
         <Row>
           <Col md={2}>

@@ -18,6 +18,10 @@
     margin-top: 8.1vh;
 }
 
+.py-10{
+    padding: 10vh 0 10vh 0;
+}
+
 .py-25{
     padding: 25vh 0 25vh 0;
 }
@@ -29,51 +33,54 @@
 
 .bg-service-center{
     /* background: #343a40; */
-    background: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backgroundServiceCenter.png");
+    background: url("../images/backgroundServiceCenter.png");
     background-size: 100%, 100%;
 }
 
 .bg-service{
-    /* background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService1.png"); */
     background-size: 100%;
     padding: 5vh 10vh 20vh 10vh;
 }
 
 .color-gradient {
-    /* fill: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%); */
     color: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);;
 }
 
+.bg-icons{
+    background-size: 100%;
+    background-image: url("../images/backIcon.svg");
+}
+
 .bg-service-1{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService1.png");    
+    background-image: url("../images/backService1.png");    
 }
 .bg-service-2{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService10.png");    
+    background-image: url("../images/backService10.png");    
 }
 .bg-service-3{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService18.png");    
+    background-image: url("../images/backService18.png");    
 }
 .bg-service-4{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService12.png");    
+    background-image: url("../images/backService12.png");    
 }
 .bg-service-5{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService5.png");    
+    background-image: url("../images/backService5.png");    
 }
 .bg-service-6{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService19.png");    
+    background-image: url("../images/backService19.png");    
 }
 .bg-service-7{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService14.png");    
+    background-image: url("../images/backService14.png");    
 }
 .bg-service-8{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService8.png");    
+    background-image: url("../images/backService8.png");    
 }
 .bg-service-9{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService9.png");    
+    background-image: url("../images/backService9.png");    
 }
 .bg-service-10{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService15.png");    
+    background-image: url("../images/backService15.png");    
 }
 .bg-service-11{
-    background-image: url("/Volumes/data/workspace/MyProjects/cource/frontend/src/images/backService11.png");    
+    background-image: url("../images/backService11.png");    
 }

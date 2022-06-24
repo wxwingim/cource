@@ -47,17 +47,17 @@ function WorksTable(props: any) {
             <ListGroup as="ol" numbered className="mb-5">
                 <ListGroup.Item variant="dark" className="d-flex justify-content-between align-items-start">
                     <div className="ms-2 me-auto">Наименование</div>
-                    <div className="ms-2 me-auto">Цена за единицу</div>
-                    <div className="ms-2 me-auto">Количество</div>
-                    <div className="ms-2 me-auto">Сумма</div>
+                    <div className="mx-2 ">Цена за единицу</div>
+                    <div className="mx-2 ">Количество</div>
+                    <div className="">Сумма</div>
                 </ListGroup.Item>
                 {
                     consumptions.map((consumption: Consumption) => 
                         <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
                             <div className="ms-2 me-auto">{ consumption.name || '' }</div>
-                            <div className="ms-2 me-auto">{ consumption.retailPrice || '' }</div>
-                            <div className="ms-2 me-auto">{ consumption.amount || '' }</div>
-                            <div className="ms-2 me-auto">{ consumption.retailPrice * consumption.amount || '' }</div>
+                            <div className="mx-2 px-5">{ consumption.retailPrice || '' }</div>
+                            <div className="mx-2 px-5">{ consumption.amount || '' }</div>
+                            <div className="">{ consumption.retailPrice * consumption.amount || '' }</div>
                         </ListGroup.Item>
                     )
                 }

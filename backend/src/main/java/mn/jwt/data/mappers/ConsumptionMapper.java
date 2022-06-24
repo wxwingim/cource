@@ -19,7 +19,7 @@ public class ConsumptionMapper {
                 .id(consumption.getId())
                 .name(consumption.getPurchase().getName())
                 .retailPrice(consumption.getPurchase().getRetailPrice())
-                .amount(consumption.getPurchase().getAmount())
+                .amount(consumption.getAmount())
                 .build();
     }
 }

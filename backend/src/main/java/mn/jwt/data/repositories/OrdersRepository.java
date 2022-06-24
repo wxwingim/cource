@@ -15,4 +15,6 @@ public interface OrdersRepository {
     Long getLastId();
 
     void createOrder(OrderDto orderDto, Long userId);
+
+    void payOrder(Long id);
 }

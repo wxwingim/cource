@@ -48,18 +48,6 @@ class OrdersHistoryPage extends React.Component<IProps, IState>{
                     <h2 className="h1">История обращений</h2>
                 </Row>
 
-                <Row>
-                    <InputGroup className="mb-3">
-                        <FormControl
-                            placeholder="Поиск по обращениям"
-                            aria-label="Поиск по обращениям"
-                        />
-                        <Button variant="outline-secondary" id="button-addon2" className="pb-2">
-                            <Search />
-                        </Button>
-                    </InputGroup>
-                </Row>
-
                 <Stack className="py-5 mx-1">
 
                     {

@@ -33,15 +33,7 @@ const LandingPage = () => {
 
             <Container fluid className='bg-dark py-4 my-01'></Container>
 
-            <Container fluid className='bg-light py-25'>
-                <Container>
-                    <Row>
-                        <h2>Проверить по номеру заказа</h2>
-                    </Row>
-                    <Row>
-                        <SearchOrderForm />
-                    </Row>
-                </Container>
+            <Container fluid className='bg-icons py-10'>
             </Container>
 
             <Container fluid className='py-25 my-01 bg-dark'>

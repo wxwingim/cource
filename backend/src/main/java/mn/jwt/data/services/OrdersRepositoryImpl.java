@@ -28,7 +28,7 @@ public class OrdersRepositoryImpl implements OrdersRepository {
     @ReadOnly
     public List<OrderDto> findAll(Long id) {
         List<OrderDto> orderDtos = new ArrayList<>();
-        entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id)
+        entityManager.createQuery("SELECT c FROM OrderRequests c WHERE c.user.id =" + id + "ORDER BY c.id DESC")
                 .getResultList().stream().forEach(order -> orderDtos.add(orderMapper.toDto((OrderRequests)order)));
         return orderDtos;
     }
@@ -72,12 +72,13 @@ public class OrdersRepositoryImpl implements OrdersRepository {
                 .setParameter(7, orderDto.getDeviceType().getId())
                 .setParameter(8, userId)
                 .executeUpdate();
-//        return entityManager.createQuery("SELECT c FROM OrderRequests c ORDER BY c.id DESC")
-//                .setMaxResults(1)
-//                .getResultList()
-//                .stream()
-//                .findFirst()
-//                .map(order -> orderMapper.toDto((OrderRequests)order));
+    }
 
+    @Override
+    @Transactional
+    public void payOrder(Long id) {
+        entityManager.createNativeQuery("UPDATE order_requests SET id_status_type = 8 WHERE id = ?")
+                .setParameter(1, id)
+                .executeUpdate();
     }
 }

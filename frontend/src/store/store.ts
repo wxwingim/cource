@@ -31,12 +31,13 @@ export default class Store{
         try{
             const response = await AuthService.login(username, password);
             console.log(response);
+
             this.setAuth(true);
-            UserService.getUserDetails().then((res) => {
-                this.setUsername(res.data.username || "");
-            });
+
+            // UserService.getUserDetails().then((res) => {
+            //     this.setUsername(res.data.username || "");
+            // });
             console.log("login isAuth: " + this.isAuth);
-            console.log("login username: "+ this.username);
         } catch (e : any) {
             console.log(e.response?.data?.message);
             console.log("login!?");
@@ -47,7 +48,6 @@ export default class Store{
         try{
             const response = await AuthService.register(username, password, lastName, firstName, middleName, phone);
             console.log(response);
-            // this.setAuth(true);
         } catch (e : any) {
             console.log(e.response?.data?.message);
         }
@@ -57,8 +57,11 @@ export default class Store{
         try{
             AuthService.logout();
             this.setAuth(false);
+            console.log("logout isAuth=" + this.isAuth)
             this.setUsername("");
         } catch (e : any) {
+            this.setAuth(false);
+            console.log("checkAuth isAuth=" + this.isAuth)
             console.log(e.response?.data?.message);
         }
     }
@@ -70,14 +73,13 @@ export default class Store{
                 this.setUsername(res.data.username);
             })
             this.setAuth(true);
+            console.log("checkAuth isAuth=" + this.isAuth)
 
         } catch(e: any) {
             this.setAuth(false);
+            console.log("checkAuth isAuth=" + this.isAuth)
+
             console.log(e.response?.data?.message);
         }
     }
-
-    // async getUserDetails(){
-
-    // }
 }

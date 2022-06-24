@@ -33,7 +33,7 @@ const AuthorizationForm: FC = () => {
             <Row className='my-4'>
                 <Form>
                     <Form.Group as={Row} className="my-4" controlId="formHorizontalTel">
-                        <Col><Form.Label column>email</Form.Label></Col>                    
+                        <Col><Form.Label column>Email</Form.Label></Col>                    
                         <Col sm={9}>
                             <Form.Control 
                                 onChange={e => setUsername(e.target.value)}
@@ -56,12 +56,6 @@ const AuthorizationForm: FC = () => {
                         </Col>
                     </Form.Group>
 
-                    <Form.Group as={Row} className="mb-5" controlId="formHorizontalCheck">
-                        <Col>
-                            <Form.Check label="Запомнить пароль" />
-                        </Col>
-                    </Form.Group>
-
                     <Form.Group>
                         <Link to="/" onClick={handleLogin} className='btn btn-dark w-100'>Войти</Link>
                     </Form.Group>              
@@ -72,9 +66,6 @@ const AuthorizationForm: FC = () => {
                 <p>Нет аккаунта? <Link to='/registration'>Зарегистрируйся</Link></p>
             </Row>
 
-            <Row>
-                <Link to='/account'> test Personal Account</Link>
-            </Row>
         </Container>
     );
 }
