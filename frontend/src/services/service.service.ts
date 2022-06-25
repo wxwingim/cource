@@ -13,8 +13,8 @@ class ServiceService {
         return axios.get<Defect[][]>(SERVICE_API_BASE_URL + "/defects/" + type);
     }
 
-    async getDefectTypes(type: string){
-        return await axios.get<DefectType[]>(SERVICE_API_BASE_URL+ "/defectTypes/"+ type);
+    getDefectTypes(type: string){
+        return axios.get<DefectType[]>(SERVICE_API_BASE_URL+ "/defectTypes/"+ type);
     }
 
     getDeviceTypes(){

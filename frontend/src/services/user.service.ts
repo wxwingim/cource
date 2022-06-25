@@ -36,16 +36,16 @@ class UserService {
     return axios.get<OrderRes>(API_URL + "history/search/" + id)
   }
 
-  async getWorks(id: string){
-    return await axios.post<Works[]>("/history/works/" + id);
+  getWorks(id: string){
+    return axios.post<Works[]>("/history/works/" + id);
   }
 
-  async getConsumptions(id : string){
-    return await axios.post<Consumption[]>("/history/consumptions/" + id);
+  getConsumptions(id : string){
+    return axios.post<Consumption[]>("/history/consumptions/" + id);
   }
 
-  async createOrder(model : string, defect: string, equipment: string, mechanicalDamage: string, deviceType: DeviceType){
-    return await axios.post("/history/create", {
+  createOrder(model : string, defect: string, equipment: string, mechanicalDamage: string, deviceType: DeviceType){
+    return axios.post("/history/create", {
       model,
       defect,
       equipment,
@@ -54,12 +54,12 @@ class UserService {
     })
   }
 
-  async getMail(id: string){
-    await axios.get("/mail/send/" + id);
+  getMail(id: string){
+    axios.get("/mail/send/" + id);
   }
 
-  async getPdf(id: string) {
-    return await axios.get('/pdf/' + id, { responseType: 'blob' });
+  getPdf(id: string) {
+    return axios.get('/pdf/' + id, { responseType: 'blob' });
   }
 
 }

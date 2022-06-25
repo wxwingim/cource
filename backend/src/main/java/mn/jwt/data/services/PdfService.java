@@ -12,6 +12,7 @@ import mn.jwt.data.repositories.OrdersRepository;
 import mn.jwt.data.repositories.WorksRepository;
 
 import javax.inject.Singleton;
+import javax.swing.border.Border;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -47,7 +48,7 @@ public class PdfService {
         return baseFont;
     }
 
-    public byte[] generatePdf(Long id, OrderDto order, List<WorksDto> works, List<ConsumptionDto> consumptions,  User user){
+    public byte[] generateMail(Long id, OrderDto order, List<WorksDto> works, List<ConsumptionDto> consumptions,  User user){
         Document document = new Document(PageSize.A4);
 
 
@@ -61,18 +62,30 @@ public class PdfService {
             //header
             LocalDate date = LocalDate.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            StringBuilder h1Str = new StringBuilder("Счет на оплату № ");
+            StringBuilder h1Str = new StringBuilder("Акт об оказании услуг № ");
             h1Str.append(id).append(" от ").append(date.format(formatter));
             Paragraph h1 = new Paragraph(h1Str.toString(), headFont);
 
             //line
             Chunk linebreak1 = new Chunk(new DottedLineSeparator());
 
+            //customer
+            PdfPTable tableCustomer = new PdfPTable(2);
+            tableCustomer.setWidths(new int[]{3, 7});
+            tableCustomer.addCell(new PdfPCell(new Phrase("Заказчик: ", font)))
+                    .setBorder(0);
+            tableCustomer.addCell(new PdfPCell(new Phrase(user.getLastName() + " " + user.getFirstName() + " " + user.getMiddleName(), font)))
+                    .setBorder(0);
+
+            //line
+            Chunk linebreak3 = new Chunk(new DottedLineSeparator());
 
 
             // Table
             PdfPTable table = new PdfPTable (6);
             table.setWidths(new int[]{1, 7, 2, 2, 4, 2});
+            table.setPaddingTop(30f);
+
 
             // head table
             table.addCell(new PdfPCell (new Phrase ("№", font)));
@@ -135,6 +148,125 @@ public class PdfService {
 
             document.add(h1);
             document.add(linebreak1);
+            document.add(tableCustomer);
+            document.add(linebreak3);
+            document.add(table);
+            document.add(footerP);
+            document.add(linebreak2);
+
+
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        byte[] pdfBytes = byteArrayOutputStream.toByteArray();
+        return pdfBytes;
+    }
+
+
+
+
+    public byte[] generatePdf(Long id, OrderDto order, List<WorksDto> works, List<ConsumptionDto> consumptions,  User user){
+        Document document = new Document(PageSize.A4);
+
+
+        try {
+            PdfWriter.getInstance(document, byteArrayOutputStream);
+
+            document.open();
+            document.setMargins(10f, 10f, 10f, 10f);
+
+
+            //header
+            LocalDate date = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            StringBuilder h1Str = new StringBuilder("Счет на оплату № ");
+            h1Str.append(id).append(" от ").append(date.format(formatter));
+            Paragraph h1 = new Paragraph(h1Str.toString(), headFont);
+
+            //line
+            Chunk linebreak1 = new Chunk(new DottedLineSeparator());
+
+
+            //customer
+            PdfPTable tableCustomer = new PdfPTable(2);
+            tableCustomer.setWidths(new int[]{3, 7});
+            tableCustomer.addCell(new PdfPCell(new Phrase("Заказчик: ", font)))
+                    .setBorder(0);
+            tableCustomer.addCell(new PdfPCell(new Phrase(user.getLastName() + " " + user.getFirstName() + " " + user.getMiddleName(), font)))
+                    .setBorder(0);
+
+            //line
+            Chunk linebreak3 = new Chunk(new DottedLineSeparator());
+
+            // Table
+            PdfPTable table = new PdfPTable (6);
+            table.setWidths(new int[]{1, 7, 2, 2, 4, 2});
+            table.setPaddingTop(30f);
+
+            // head table
+            table.addCell(new PdfPCell (new Phrase ("№", font)));
+            table.addCell(new PdfPCell (new Phrase ("Работы/услуги", font)));
+            table.addCell(new PdfPCell (new Phrase ("Кол-во", font)));
+            table.addCell(new PdfPCell (new Phrase ("ед.", font)));
+            table.addCell(new PdfPCell (new Phrase ("Цена", font)));
+            table.addCell(new PdfPCell (new Phrase ("Сумма", font)));
+
+            int amount = 0;
+            Double price = 0.00;
+            int n = 1;
+
+            // body table
+            if(works.size() != 0){
+                for(WorksDto work: works){
+                    amount++;
+                    price += work.getService().getPrice();
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(n),  font)));
+                    table.addCell(new PdfPCell (new Phrase (work.getService().getName(), font)));
+                    table.addCell(new PdfPCell (new Phrase ("1", font)));
+                    table.addCell(new PdfPCell (new Phrase ("шт.", font)));
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(work.getService().getPrice()), font)));
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(work.getService().getPrice()), font)));
+                    n++;
+                }
+            }
+            if(consumptions.size() != 0){
+                for(ConsumptionDto consumption: consumptions){
+                    amount += consumption.getAmount();
+                    price += consumption.getRetailPrice() * consumption.getAmount();
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(n), font)));
+                    table.addCell(new PdfPCell (new Phrase (consumption.getName(), font)));
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(consumption.getAmount()), font)));
+                    table.addCell(new PdfPCell (new Phrase ("шт.", font)));
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(consumption.getRetailPrice()), font)));
+                    table.addCell(new PdfPCell (new Phrase (String.valueOf(consumption.getRetailPrice() * consumption.getAmount()), font)));
+                    n++;
+                }
+            }
+
+            //last line in table
+            table.addCell(new PdfPCell (new Phrase ("", font)));
+            table.addCell(new PdfPCell (new Phrase ("", font)));
+            table.addCell(new PdfPCell (new Phrase (String.valueOf(amount), font)));
+            table.addCell(new PdfPCell (new Phrase ("", font)));
+            table.addCell(new PdfPCell (new Phrase ("", font)));
+            table.addCell(new PdfPCell (new Phrase (String.valueOf(price), font)));
+
+
+            //line
+            Chunk linebreak2 = new Chunk(new DottedLineSeparator());
+
+            //footer
+            StringBuilder footerStr = new StringBuilder("Всего наименований ");
+            footerStr.append(amount).append(", на сумму ").append(price).append(" руб.");
+            Paragraph footerP = new Paragraph(footerStr.toString(), font);
+            footerP.setPaddingTop(10f);
+
+
+            document.add(h1);
+            document.add(linebreak1);
+            document.add(tableCustomer);
+            document.add(linebreak3);
             document.add(table);
             document.add(footerP);
             document.add(linebreak2);

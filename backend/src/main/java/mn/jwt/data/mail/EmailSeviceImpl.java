@@ -1,6 +1,10 @@
 package mn.jwt.data.mail;
 
 import mn.jwt.data.domain.User;
+import mn.jwt.data.domain.Works;
+import mn.jwt.data.dtos.ConsumptionDto;
+import mn.jwt.data.dtos.OrderDto;
+import mn.jwt.data.dtos.WorksDto;
 import mn.jwt.data.services.PdfService;
 
 import java.util.*;
@@ -14,7 +18,7 @@ import javax.mail.util.ByteArrayDataSource;
 @Singleton
 public class EmailSeviceImpl {
 
-    MailGenerator mailGenerator = new MailGenerator();
+    PdfService mailGenerator = new PdfService();
     private String username;
     private String password;
     private Properties props;
@@ -32,7 +36,7 @@ public class EmailSeviceImpl {
         props.put("mail.smtp.port", "587");
     }
 
-    public void send(String subject, Long id, User user, String fromEmail, String toEmail){
+    public void send(String subject, Long id, User user, String fromEmail, String toEmail, List<WorksDto> works, List<ConsumptionDto> consumptions, OrderDto order){
         Session session = Session.getInstance(props, new Authenticator() {
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(username, password);
@@ -52,7 +56,7 @@ public class EmailSeviceImpl {
             // Часть сообщения
             BodyPart messageBodyPart = new MimeBodyPart();
 
-            DataSource dataSource = new ByteArrayDataSource( mailGenerator.generateMail(id, user) , "application/pdf");
+            DataSource dataSource = new ByteArrayDataSource( mailGenerator.generateMail(id, order, works, consumptions, user) , "application/pdf");
 
             messageBodyPart.setDataHandler(new DataHandler(dataSource));
             messageBodyPart.setFileName("check.pdf");
